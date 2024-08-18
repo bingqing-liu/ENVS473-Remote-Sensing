@@ -1,16 +1,10 @@
-# Welcome to your Jupyter Book
+# ENVS473 Remote Sensing of Environment 
 
-This is a small sample book to give you a feel for how book content is
-structured.
+This course is designed to provide a foundational understanding of remote sensing techniques and instrumentation in environmental sciences. It will cover the physical principles of remote sensing, including an exploration of the characteristics of electromagnetic radiation and its interactions with the natural environment. Both active and passive techniques will be explored.
 
-:::{note}
-Here is a note!
-:::
+The course also includes computer laboratory components. A significant focus of the laboratory work will be on the practical application of Python in processing and interpreting remotely sensed data, such as active remote sensing (e.g., RADAR from Sentinel-1 and LIDAR from ICESat-2) and passive remote sensing data, such as, those popular multispectral remote sensing data (e.g., Sentinel-2 MSI), more advanced hyperspectral remote sensing data (e.g., PACE and EMIT), as well as thermal remote sensing data (e.g., ECOSTRESS). Throughout the course, students will participate in hands-on labs and final projects that reinforce the concepts learned in lectures. This hands-on approach aims to equip students with the skills necessary to apply Python programming effectively in environmental remote sensing.
 
-And here is a code block:
+By the end of the semester, students will be familiar with the underlying mechanisms of remote sensing techniques, the diversity of remote sensing data, and have a strong understanding of Python programming and its applications in the geospatial domain.
 
-```
-e = mc^2
-```
+![](https://private-user-images.githubusercontent.com/123585527/358880328-22cd4a4b-fbea-4c91-b656-c880fb89ffe1.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjM5NTAzMjAsIm5iZiI6MTcyMzk1MDAyMCwicGF0aCI6Ii8xMjM1ODU1MjcvMzU4ODgwMzI4LTIyY2Q0YTRiLWZiZWEtNGM5MS1iNjU2LWM4ODBmYjg5ZmZlMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgxOFQwMzAwMjBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wZTRiZjdkZmE4MzRjYjQ2MTYwN2RhNzE1YzU1NzBhZTliYTU0MzU2Y2I0MTQwNWQ2ODYzNzJmYjlhNTFhMGNiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.NRJVl5t-0yJyE5cFsMIm-plvj1laSpO0VF7NDHr5bUA)
 
-Check out the content pages bundled with this sample book to see more.
