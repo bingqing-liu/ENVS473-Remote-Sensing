@@ -3,9 +3,12 @@
 
 format: jb-book
 root: index
-chapters:
-  - file: book/syllabus
-  - file: book/schedule
+parts:
+  - caption: About
+    chapters:
+      - file: book/about/instructor
+      - file: book/about/syllabus
+      - file: book/about/schedule
 
 # Or you organize the TOC by parts
 
