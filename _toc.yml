@@ -9,6 +9,12 @@ parts:
       - file: book/about/instructor
       - file: book/about/syllabus
       - file: book/about/schedule
+  - caption: Lectures
+    chapters:
+      - file: book/lectures/lecture01
+  - caption: Labs
+    chapters:
+      - file: book/labs/lab01
 
 # Or you organize the TOC by parts
 
