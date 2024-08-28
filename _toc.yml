@@ -12,6 +12,7 @@ parts:
   - caption: Lectures
     chapters:
       - file: book/lectures/lecture01
+      - file: book/lectures/lecture02
   - caption: Labs
     chapters:
       - file: book/labs/lab1a
