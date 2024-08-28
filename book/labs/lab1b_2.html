@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Variables and Data Types &#8212; ENVS473 Remote Sensing of Environment</title>
+    <title>Lab1b_2 &#8212; ENVS473 Remote Sensing of Environment</title>
   
   
   
@@ -62,7 +62,7 @@
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Install Python Packages" href="lab1b_1.html" />
+    <link rel="prev" title="Lab1b_1" href="lab1b_1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,8 +185,17 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lab1a.html">Lab 1a</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab1b_1.html">Install Python Packages</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Variables and Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_1.html">Lab1b_1</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab1b_2</a></li>
+
+
+
+
+
+
+
+
+
 </ul>
 
     </div>
@@ -456,7 +465,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variables and Data Types</h1>
+    <h1>Lab1b_2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -466,20 +475,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-in-python">Variables in Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data Structures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab1b_2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-data-types">Variables and Data Types</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-in-python">Variables in Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data Structures</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -490,15 +502,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="variables-and-data-types">
+  <section id="lab1b-2">
+<h1>Lab1b_2<a class="headerlink" href="#lab1b-2" title="Link to this heading">#</a></h1>
+</section>
+<section id="variables-and-data-types">
 <h1>Variables and Data Types<a class="headerlink" href="#variables-and-data-types" title="Link to this heading">#</a></h1>
+</section>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
 <p>This lecture introduces the fundamental concepts of variables, and data types in Python, focusing on their applications within geospatial programming. Understanding these basics is essential for working with geospatial data, as variables allow you to store and manipulate information, while data types define the kind of operations you can perform on this information. This lecture will guide you through variable assignment, naming conventions, and the various data types available in Python, providing practical examples relevant to GIS.</p>
 <p>In this lecture, we will also explore the fundamental Python data structures: Tuples, Lists, Sets, and Dictionaries. These data structures are essential tools in geospatial programming, enabling you to efficiently store, manage, and manipulate various types of data. By mastering these structures, you will be able to handle complex geospatial datasets with ease, paving the way for more advanced analysis and processing tasks.</p>
 </section>
 <section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
 <p>By the end of this lecture, you should be able to:</p>
 <ul class="simple">
 <li><p>Define and use variables in Python, adhering to best practices for naming and assignment.</p></li>
@@ -512,7 +528,7 @@ document.write(`
 </ul>
 </section>
 <section id="variables-in-python">
-<h2>Variables in Python<a class="headerlink" href="#variables-in-python" title="Link to this heading">#</a></h2>
+<h1>Variables in Python<a class="headerlink" href="#variables-in-python" title="Link to this heading">#</a></h1>
 <p>In Python, a variable is a symbolic name that is a reference or pointer to an object. Once an object is assigned to a variable, you can refer to that object by the variable name.</p>
 <p>Let’s start by creating a simple variable that represents the number of spatial points in a dataset.</p>
 <div class="cell docutils container">
@@ -551,7 +567,7 @@ document.write(`
 </div>
 </section>
 <section id="naming-variables">
-<h2>Naming Variables<a class="headerlink" href="#naming-variables" title="Link to this heading">#</a></h2>
+<h1>Naming Variables<a class="headerlink" href="#naming-variables" title="Link to this heading">#</a></h1>
 <p>When naming variables, you should follow these rules:</p>
 <ul class="simple">
 <li><p>Variable names must start with a letter or an underscore, such as <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p></li>
@@ -562,7 +578,7 @@ document.write(`
 </ul>
 </section>
 <section id="data-types">
-<h2>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
+<h1>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h1>
 <p>Python supports various data types, which are essential to understand before working with geospatial data. The most common data types include:</p>
 <p><strong>a) Integers (int):</strong> These are whole numbers, e.g., 1, 120, -5</p>
 <div class="cell docutils container">
@@ -624,9 +640,9 @@ document.write(`
 </div>
 </section>
 <section id="data-structures">
-<h2>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h2>
+<h1>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h1>
 <section id="tuples">
-<h3>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h3>
+<h2>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h2>
 <p>Tuples are immutable sequences, meaning that once a tuple is created, its elements cannot be changed. Tuples are useful for storing fixed collections of items.</p>
 <p>For example, a tuple can be used to store the coordinates of a geographic point (latitude, longitude).</p>
 <div class="cell docutils container">
@@ -656,7 +672,7 @@ document.write(`
 </div>
 </section>
 <section id="lists">
-<h3>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h3>
+<h2>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h2>
 <p>Lists are ordered, mutable sequences, meaning you can change, add, or remove elements after the list has been created. Lists are very flexible and can store multiple types of data, making them useful for various geospatial tasks.</p>
 <p>For example, you can store a list of coordinates representing a path or boundary.</p>
 <div class="cell docutils container">
@@ -700,7 +716,7 @@ document.write(`
 </div>
 </section>
 <section id="dictionaries">
-<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h3>
+<h2>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h2>
 <p>Dictionaries are collections of key-value pairs, where each key is unique. Dictionaries are extremely useful for storing data that is associated with specific identifiers, such as attribute data for geographic features.</p>
 <p>For example, you can use a dictionary to store attributes of a geospatial feature, such as a city.</p>
 <div class="cell docutils container">
@@ -746,7 +762,7 @@ document.write(`
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
 <p>Create a dictionary to store attributes of a geographic feature (e.g., a river or mountain). Include keys for the name, length, and location of the feature. Then, add an additional attribute (e.g., the source of the river or the height of the mountain) and print the dictionary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -757,10 +773,9 @@ document.write(`
 </div>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
 <p>Understanding and utilizing Python’s data structures such as tuples, lists, sets, and dictionaries are fundamental skills in geospatial programming. These structures provide the flexibility and functionality required to manage and manipulate spatial data effectively.</p>
 <p>Continue exploring these data structures by applying them to your geospatial projects and analyses.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -799,7 +814,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Install Python Packages</p>
+        <p class="prev-next-title">Lab1b_1</p>
       </div>
     </a>
 </div>
@@ -818,20 +833,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-in-python">Variables in Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data Structures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab1b_2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-data-types">Variables and Data Types</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-in-python">Variables in Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-variables">Naming Variables</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data Structures</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
