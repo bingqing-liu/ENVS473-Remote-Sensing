@@ -1,4 +1,4 @@
-## Lab 1a
+## Lab1a
 
 1. Create new environment ENVS473
    
