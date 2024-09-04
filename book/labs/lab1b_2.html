@@ -489,7 +489,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-2-due-by-09-08-2024-12-00-am">Homework 2 due by 09/08/2024 12:00 am</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 
@@ -511,8 +511,7 @@ document.write(`
 </section>
 <section id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
-<p>This lecture introduces the fundamental concepts of variables, and data types in Python, focusing on their applications within geospatial programming. Understanding these basics is essential for working with geospatial data, as variables allow you to store and manipulate information, while data types define the kind of operations you can perform on this information. This lecture will guide you through variable assignment, naming conventions, and the various data types available in Python, providing practical examples relevant to GIS.</p>
-<p>In this lecture, we will also explore the fundamental Python data structures: Tuples, Lists, Sets, and Dictionaries. These data structures are essential tools in geospatial programming, enabling you to efficiently store, manage, and manipulate various types of data. By mastering these structures, you will be able to handle complex geospatial datasets with ease, paving the way for more advanced analysis and processing tasks.</p>
+<p>This lecture introduces the fundamental concepts of variables, and data types in Python, focusing on their applications within geospatial programming. Understanding these basics is essential for working with geospatial data, as variables allow you to store and manipulate information, while data types define the kind of operations you can perform on this information. We will also explore the fundamental Python data structures: Tuples, Lists, Sets, and Dictionaries. These data structures are essential tools in geospatial programming, enabling you to efficiently store, manage, and manipulate various types of data. By mastering these structures, you will be able to handle complex geospatial datasets with ease, paving the way for more advanced analysis and processing tasks.</p>
 </section>
 <section id="learning-objectives">
 <h1>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h1>
@@ -523,7 +522,6 @@ document.write(`
 <li><p>Understand how data types are used in the context of geospatial data, such as coordinates and attribute information.</p></li>
 <li><p>Understand the characteristics and use cases of Python tuples, lists, sets, and dictionaries.</p></li>
 <li><p>Apply these data structures to store and manipulate geospatial data, such as coordinates, paths, and attribute information.</p></li>
-<li><p>Differentiate between mutable and immutable data structures and choose the appropriate structure for different geospatial tasks.</p></li>
 <li><p>Perform common operations on these data structures, including indexing, slicing, adding/removing elements, and updating values.</p></li>
 <li><p>Utilize dictionaries to manage geospatial feature attributes and understand the importance of key-value pairs in geospatial data management.</p></li>
 </ul>
@@ -615,30 +613,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p><strong>e) Lists:</strong> Lists are ordered collections of items, which can be of any data type.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="mf">35.6895</span><span class="p">,</span>
-    <span class="mf">139.6917</span><span class="p">,</span>
-<span class="p">]</span>  <span class="c1"># A list representing latitude and longitude of a point</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>f) Dictionaries (dict):</strong> Dictionaries are collections of key-value pairs.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_attributes</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mount Fuji&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;height_meters&quot;</span><span class="p">:</span> <span class="mi">3776</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Stratovolcano&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">35.3606</span><span class="p">,</span> <span class="mf">138.7274</span><span class="p">],</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="data-structures">
 <h1>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h1>
@@ -650,7 +624,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span>
     <span class="mf">35.6895</span><span class="p">,</span>
-    <span class="mf">139.6917</span><span class="p">,</span>
+    <span class="mf">139.6917</span>
 <span class="p">)</span>  <span class="c1"># Tuple representing a geographic point (latitude, longitude)</span>
 </pre></div>
 </div>
@@ -663,6 +637,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">latitude</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">longitude</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latitude: </span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s2">, Longitude: </span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># try point [2], point [-1], point [-2] to see what will happen?</span>
 </pre></div>
 </div>
 </div>
@@ -672,9 +647,31 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#it can be anything inside of tuple, nested tuple</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;Batong Rouge&quot;</span><span class="p">,</span> <span class="s2">&quot;Lafayette&quot;</span><span class="p">),(</span><span class="s2">&quot;Chicago&quot;</span><span class="p">,</span> <span class="s2">&quot;New York&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># how to access to Chicago from this Tuple</span>
+<span class="n">cities</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Chicago&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="lists">
 <h2>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h2>
+<p>Lists are ordered collections of items, which can be of any data type.</p>
 <p>Lists are ordered, mutable sequences, meaning you can change, add, or remove elements after the list has been created. Lists are very flexible and can store multiple types of data, making them useful for various geospatial tasks.</p>
 <p>For example, you can store a list of coordinates representing a path or boundary.</p>
 <div class="cell docutils container">
@@ -702,6 +699,31 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span> <span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
 <p>Lists allow you to perform various operations such as slicing, which lets you access a subset of the list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -711,7 +733,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sub-path: [(35.6895, 139.6917), (34.0522, -118.2437)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sub-path: []
 </pre></div>
 </div>
 </div>
@@ -720,7 +742,7 @@ document.write(`
 <section id="dictionaries">
 <h2>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h2>
 <p>Dictionaries are collections of key-value pairs, where each key is unique. Dictionaries are extremely useful for storing data that is associated with specific identifiers, such as attribute data for geographic features.</p>
-<p>For example, you can use a dictionary to store attributes of a geospatial feature, such as a city.</p>
+<p>For example, you can use a dictionary to store attributes of a geospatial feature, such as a city. You will encounter dictionaries all the time, if you deal with geospatial data, such as jason file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city_attributes</span> <span class="o">=</span> <span class="p">{</span>
@@ -747,6 +769,33 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city_attributes</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">140000000</span> <span class="c1">#update the number of population</span>
+<span class="n">city_attributes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Tokyo&#39;, &#39;population&#39;: 140000000, &#39;coordinates&#39;: (35.6895, 139.6917)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update coodinates</span>
+<span class="n">city_attributes</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">city_attributes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Tokyo&#39;, &#39;population&#39;: 140000000, &#39;coordinates&#39;: (30, -90)}
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can also add or update key-value pairs in a dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -756,15 +805,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated city attributes: {&#39;name&#39;: &#39;Tokyo&#39;, &#39;population&#39;: 13929286, &#39;coordinates&#39;: (35.6895, 139.6917), &#39;area_km2&#39;: 2191}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated city attributes: {&#39;name&#39;: &#39;Tokyo&#39;, &#39;population&#39;: 140000000, &#39;coordinates&#39;: (30, -90), &#39;area_km2&#39;: 2191}
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
+<section id="homework-2-due-by-09-08-2024-12-00-am">
+<h1>Homework 2 due by 09/08/2024 12:00 am<a class="headerlink" href="#homework-2-due-by-09-08-2024-12-00-am" title="Link to this heading">#</a></h1>
 <p>Create a dictionary to store attributes of a geographic feature (e.g., a river or mountain). Include keys for the name, length, and location of the feature. Then, add an additional attribute (e.g., the source of the river or the height of the mountain) and print the dictionary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -848,7 +897,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-2-due-by-09-08-2024-12-00-am">Homework 2 due by 09/08/2024 12:00 am</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 
