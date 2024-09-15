@@ -14,6 +14,7 @@ parts:
       - file: book/lectures/lecture01
       - file: book/lectures/lecture02
       - file: book/lectures/lecture03
+      - file: book/lectures/lecture04
   - caption: Labs
     chapters:
       - file: book/labs/lab1a
