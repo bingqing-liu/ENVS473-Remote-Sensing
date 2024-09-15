@@ -21,6 +21,7 @@ parts:
       - file: book/labs/lab1b_1
       - file: book/labs/lab1b_2
       - file: book/labs/lab1c
+      - file: book/labs/lab2a
 
 
 # Or you organize the TOC by parts
