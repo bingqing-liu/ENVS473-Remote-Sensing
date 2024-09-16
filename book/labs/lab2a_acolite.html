@@ -57,11 +57,12 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/labs/lab2a';</script>
-    <link rel="canonical" href="https://envs473.bingqingliu.com/book/labs/lab2a.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/labs/lab2a_acolite';</script>
+    <link rel="canonical" href="https://envs473.bingqingliu.com/book/labs/lab2a_acolite.html" />
     <link rel="icon" href="../../_static/fav.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lab2a" href="lab2b.html" />
     <link rel="prev" title="Lab1c" href="lab1c.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,6 +204,8 @@
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab2a</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="lab2b.html">Lab2a</a></li>
+
 </ul>
 
     </div>
@@ -257,7 +260,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/bingqing-liu/ENVS473-Remote-Sensing/main?urlpath=tree/book/labs/lab2a.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/bingqing-liu/ENVS473-Remote-Sensing/main?urlpath=tree/book/labs/lab2a_acolite.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +278,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/bingqing-liu/ENVS473-Remote-Sensing/blob/main/book/labs/lab2a.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/bingqing-liu/ENVS473-Remote-Sensing/blob/main/book/labs/lab2a_acolite.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +344,7 @@
       
       
       
-      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/edit/main/book/labs/lab2a.ipynb" target="_blank"
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/edit/main/book/labs/lab2a_acolite.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -358,7 +361,7 @@
       
       
       
-      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/issues/new?title=Issue%20on%20page%20%2Fbook/labs/lab2a.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/issues/new?title=Issue%20on%20page%20%2Fbook/labs/lab2a_acolite.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +391,7 @@
       
       
       
-      <li><a href="../../_sources/book/labs/lab2a.ipynb" target="_blank"
+      <li><a href="../../_sources/book/labs/lab2a_acolite.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -483,7 +486,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab2a</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-satellite-timelapse-animations-of-hurricane-francine-using-earth-engine-and-geemap">Create satellite timelapse animations of Hurricane Francine using Earth Engine and geemap</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-correction-with-acolite">Atmospheric Correction with Acolite</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-sample-data">Download sample data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-acolite-software">Download Acolite software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-acolite">Run Acolite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">Batch processing</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -499,138 +509,156 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lab2a">
 <h1>Lab2a<a class="headerlink" href="#lab2a" title="Link to this heading">#</a></h1>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="create-satellite-timelapse-animations-of-hurricane-francine-using-earth-engine-and-geemap">
-<h1>Create satellite timelapse animations of Hurricane Francine using Earth Engine and geemap<a class="headerlink" href="#create-satellite-timelapse-animations-of-hurricane-francine-using-earth-engine-and-geemap" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="atmospheric-correction-with-acolite">
+<h1>Atmospheric Correction with Acolite<a class="headerlink" href="#atmospheric-correction-with-acolite" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/acolite/acolite">Acolite</a> can perform atmospheric correction on a variety of satellite sensors, including Landsat, Sentinel-2, PACE, EMIT, AVIRIS, among others. For more information on how to use Acolite, please refer to the <a class="reference external" href="https://github.com/acolite/acolite/releases/download/20231023.0/acolite_manual_20231023.pdf.">Acolite manual</a></p>
+<p>In this example, we will use Acolite to perform atmospheric correction on a Sentinel-2 image.</p>
+<p>In previous class, we created a Environemnt called ENVS473.</p>
+<p>Now we need to create a new enviroment called “geo”</p>
+<p>mamba create -n geo -c conda-forge –yes python=3.10 gdal=3.7.2 hvplot geoviews rioxarray rasterio geopandas fiona=1.9.4 jupyter earthaccess jupyter_bokeh h5py h5netcdf spectral scikit-image seaborn jupyterlab dask ray-default leafmap hypercoast</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
-<span class="kn">import</span> <span class="nn">geemap</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="import-libraries">
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">hypercoast</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">ee</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">geemap</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">hypercoast</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;ee&#39;
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;hypercoast&#39;
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="download-sample-data">
+<h2>Download sample data<a class="headerlink" href="#download-sample-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">m</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming you&#39;ve already downloaded the file to your local folder</span>
+<span class="n">work_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\C00553090\Downloads\Sediment_data\Sediment_data&quot;</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;S2A_MSIL1C_20160920T164452_N0204_R083_T15RYN_20160920T164450.SAFE.zip&quot;</span><span class="p">)</span>
 
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "06f2561016e7441f8a853742f7a36986", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<p>Draw a rectange on the map above.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roi</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">user_roi</span>
-<span class="k">if</span> <span class="n">roi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">roi</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span><span class="o">-</span><span class="mf">99.3832</span><span class="p">,</span> <span class="mf">19.877</span><span class="p">,</span> <span class="o">-</span><span class="mf">82.1084</span><span class="p">,</span> <span class="mf">33.7122</span><span class="p">)</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2024-09-10T12:00:00&quot;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2024-09-10T21:00:00&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;GOES-16&quot;</span>
-<span class="n">scan</span> <span class="o">=</span> <span class="s2">&quot;full_disk&quot;</span>
+<span class="c1"># Now you have the file path for the locally stored file</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using local file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            </div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using local file: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\S2A_MSIL1C_20160920T164452_N0204_R083_T15RYN_20160920T164450.SAFE.zip
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">timelapse</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">goes_timelapse</span><span class="p">(</span>
-    <span class="n">roi</span><span class="p">,</span> <span class="s2">&quot;goes.gif&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">scan</span><span class="p">,</span> <span class="n">framesPerSecond</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">overlay_data</span><span class="o">=</span><span class="s2">&quot;us_states&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This line takes the filepath string (which represents the path to the ZIP file) and removes the .zip extension from it.</span>
+<span class="n">input_dir</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="c1"># This line checks whether the directory represented by input_dir exists. The os.path.exists() function returns True if the path exists and False if it doesn&#39;t.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">input_dir</span><span class="p">):</span>
+    <span class="c1">#If the directory does not exist, this line raises a FileNotFoundError with a custom error message. This is done using Python&#39;s raise statement, which generates an exception.</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Directory </span><span class="si">{</span><span class="n">input_dir</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-acolite-software">
+<h2>Download Acolite software<a class="headerlink" href="#download-acolite-software" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># acolite_dir: This variable will store the path to the directory where the ACOLITE software is downloaded and saved.</span>
+<span class="n">acolite_dir</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">download_acolite</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span>
+<span class="c1"># hypercoast includes functions to download and configure various datasets and software, such as ACOLITE.</span>
+<span class="c1"># This function is designed to automatically download the ACOLITE and install it in the specified directory: work_dir.</span>
+<span class="n">hypercoast</span><span class="o">.</span><span class="n">download_acolite</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Acolite directory: </span><span class="si">{</span><span class="n">acolite_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
+C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
+Acolite directory: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-acolite">
+<h2>Run Acolite<a class="headerlink" href="#run-acolite" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
+<span class="n">out_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\C00553090\\Downloads\\Sediment_data\\Sediment_data\\output&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypercoast</span><span class="o">.</span><span class="n">run_acolite</span><span class="p">(</span>
+    <span class="n">acolite_dir</span><span class="o">=</span><span class="n">acolite_dir</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="n">input_dir</span><span class="p">,</span>
+    <span class="n">out_dir</span><span class="o">=</span><span class="n">out_dir</span><span class="p">,</span>
+    <span class="n">l2w_parameters</span><span class="o">=</span><span class="s2">&quot;Rrs_*,chl_oc3,chl_re_mishra,spm_nechad2016&quot;</span><span class="p">,</span>
+    <span class="n">rgb_rhot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rgb_rhos</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_l2w</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">geemap</span><span class="o">.</span><span class="n">show_image</span><span class="p">(</span><span class="n">timelapse</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating URL...
-Downloading GIF image from https://earthengine.googleapis.com/v1/projects/earthengine-legacy/videoThumbnails/8e6801edb16d3033b11548f5b2ef9f72-830569a4114b177297c1ce5505e2f77a:getPixels
-Please wait ...
-The GIF image has been saved to: c:\Users\C00553090\DATA\Hyperspectral\ENVS473-Remote-Sensing\book\labs\goes.gif
+</div>
+</section>
+<section id="batch-processing">
+<h2>Batch processing<a class="headerlink" href="#batch-processing" title="Link to this heading">#</a></h2>
+<p>To process multiple images, put all the images in a folder. For example, unzip all the images in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder. Then, run the following code to make sure that all image folders are listed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)]</span>
+<span class="n">input_files</span>
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "47497d502b0644e5aa418a1ab7bbfb4f", "version_major": 2, "version_minor": 0}</script></div>
 </div>
-<p><img alt="goes" src="https://github.com/user-attachments/assets/7735ece7-c1d2-4304-b349-64a298f81d9b" /></p>
+</div>
+<p>Run the following code to process all images in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypercoast</span><span class="o">.</span><span class="n">run_acolite</span><span class="p">(</span>
+    <span class="n">acolite_dir</span><span class="o">=</span><span class="n">acolite_dir</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="n">input_files</span><span class="p">,</span>
+    <span class="n">out_dir</span><span class="o">=</span><span class="n">out_dir</span><span class="p">,</span>
+    <span class="n">l2w_parameters</span><span class="o">=</span><span class="s2">&quot;Rrs_*,chl_oc3,chl_re_mishra,spm_nechad2016&quot;</span><span class="p">,</span>
+    <span class="n">rgb_rhot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rgb_rhos</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_l2w</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -672,6 +700,15 @@ The GIF image has been saved to: c:\Users\C00553090\DATA\Hyperspectral\ENVS473-R
         <p class="prev-next-title">Lab1c</p>
       </div>
     </a>
+    <a class="right-next"
+       href="lab2b.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab2a</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -689,7 +726,14 @@ The GIF image has been saved to: c:\Users\C00553090\DATA\Hyperspectral\ENVS473-R
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lab2a</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-satellite-timelapse-animations-of-hurricane-francine-using-earth-engine-and-geemap">Create satellite timelapse animations of Hurricane Francine using Earth Engine and geemap</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-correction-with-acolite">Atmospheric Correction with Acolite</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-sample-data">Download sample data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-acolite-software">Download Acolite software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-acolite">Run Acolite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">Batch processing</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
