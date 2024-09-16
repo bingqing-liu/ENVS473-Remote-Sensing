@@ -515,7 +515,10 @@ document.write(`
 <p>In this example, we will use Acolite to perform atmospheric correction on a Sentinel-2 image.</p>
 <p>In previous class, we created a Environemnt called ENVS473.</p>
 <p>Now we need to create a new enviroment called “geo”</p>
+<p>Launch your Anaconda prompt (miniconda):
+conda env list</p>
 <p>mamba create -n geo -c conda-forge –yes python=3.10 gdal=3.7.2 hvplot geoviews rioxarray rasterio geopandas fiona=1.9.4 jupyter earthaccess jupyter_bokeh h5py h5netcdf spectral scikit-image seaborn jupyterlab dask ray-default leafmap hypercoast</p>
+<p>conda activate geo</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
@@ -547,6 +550,8 @@ document.write(`
 </section>
 <section id="download-sample-data">
 <h2>Download sample data<a class="headerlink" href="#download-sample-data" title="Link to this heading">#</a></h2>
+<p>Please go to <a class="reference external" href="https://browser.dataspace.copernicus.eu/?zoom=11&amp;amp;lat=29.34901&amp;amp;lng=-89.2313&amp;amp;themeId=DEFAULT-THEME&amp;amp;visualizationUrl=U2FsdGVkX1%2BJ6ZVvrXnO19s9un2vE7tNg701ajWAKdqMHJE7pkoXUewQ2dSvy%2FHoqCKiUpV3URXrnGGSeU0zNuaoMgEBlqXBocKOWdHS69R8nliCIhDuS%2B%2Ff3D8DW4oC&amp;amp;datasetId=S2_L2A_CDAS&amp;amp;fromTime=2023-12-28T00%3A00%3A00.000Z&amp;amp;toTime=2023-12-28T23%3A59%3A59.999Z&amp;amp;layerId=1_TRUE_COLOR&amp;amp;demSource3D=%22MAPZEN%22&amp;amp;cloudCoverage=30&amp;amp;dateMode=SINGLE">Copernicus Browser</a>, and creat an account, so that you can download Sentinel 2 data.</p>
+<p>Or you can download data from this URL: <a class="github reference external" href="https://github.com/opengeos/datasets/releases/download/hypercoast/S2A_MSIL1C_20160920T164452_N0204_R083_T15RYN_20160920T164450.SAFE.zip">opengeos/datasets</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming you&#39;ve already downloaded the file to your local folder</span>
