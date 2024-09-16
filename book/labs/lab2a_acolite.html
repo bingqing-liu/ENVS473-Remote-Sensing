@@ -511,14 +511,16 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="atmospheric-correction-with-acolite">
 <h1>Atmospheric Correction with Acolite<a class="headerlink" href="#atmospheric-correction-with-acolite" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://github.com/acolite/acolite">Acolite</a> can perform atmospheric correction on a variety of satellite sensors, including Landsat, Sentinel-2, PACE, EMIT, AVIRIS, among others. For more information on how to use Acolite, please refer to the <a class="reference external" href="https://github.com/acolite/acolite/releases/download/20231023.0/acolite_manual_20231023.pdf.">Acolite manual</a></p>
+<p><a class="reference external" href="https://github.com/acolite/acolite">Acolite</a> can perform atmospheric correction on a variety of satellite sensors, including Landsat, Sentinel-2, PACE, EMIT, AVIRIS, among others. For more information on how to use Acolite, please refer to the [Acolite manual]:<a class="reference external" href="https://www.scribd.com/document/650829066/acolite-manual-20221114-0">https://www.scribd.com/document/650829066/acolite-manual-20221114-0</a></p>
 <p>In this example, we will use Acolite to perform atmospheric correction on a Sentinel-2 image.</p>
 <p>In previous class, we created a Environemnt called ENVS473.</p>
 <p>Now we need to create a new enviroment called “geo”</p>
 <p>Launch your Anaconda prompt (miniconda):
 conda env list</p>
-<p>mamba create -n geo -c conda-forge –yes python=3.10 gdal=3.7.2 hvplot geoviews rioxarray rasterio geopandas fiona=1.9.4 jupyter earthaccess jupyter_bokeh h5py h5netcdf spectral scikit-image seaborn jupyterlab dask ray-default leafmap hypercoast</p>
+<p>conda create -n geo -c conda-forge</p>
 <p>conda activate geo</p>
+<p>conda install mamba -c conda-forge</p>
+<p>mamba install -c conda-forge python=3.10 gdal=3.7.2 hvplot geoviews rioxarray rasterio geopandas fiona=1.9.4 jupyter earthaccess jupyter_bokeh h5py h5netcdf spectral scikit-image seaborn jupyterlab dask ray-default leafmap hypercoast</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
@@ -563,6 +565,11 @@ conda env list</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using local file: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\S2A_MSIL1C_20160920T164452_N0204_R083_T15RYN_20160920T164450.SAFE.zip
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -590,6 +597,13 @@ conda env list</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
+C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
+Acolite directory: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="run-acolite">
@@ -598,6 +612,11 @@ conda env list</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
 <span class="n">out_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\C00553090\\Downloads\\Sediment_data\\Sediment_data\\output&#39;
 </pre></div>
 </div>
 </div>
