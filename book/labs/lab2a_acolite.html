@@ -517,11 +517,13 @@ document.write(`
 <p>In previous class, we created a Environemnt called ENVS473.</p>
 <p>Now we need to create a new enviroment called “geo”</p>
 <p>Launch your Anaconda prompt (miniconda):</p>
-<p>conda env list</p>
-<p>conda create -n geo</p>
-<p>conda activate geo</p>
-<p>conda install mamba -c conda-forge</p>
-<p>mamba install -c conda-forge python=3.10 gdal=3.7.2 hvplot geoviews rioxarray rasterio geopandas fiona=1.9.4 jupyter earthaccess jupyter_bokeh h5py h5netcdf spectral scikit-image seaborn jupyterlab dask ray-default leafmap hypercoast</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>list
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>geo<span class="w"> </span>
+conda<span class="w"> </span>activate<span class="w"> </span>geo
+conda<span class="w"> </span>install<span class="w"> </span>mamba<span class="w"> </span>-c<span class="w"> </span>conda-forge
+mamba<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span><span class="nv">gdal</span><span class="o">=</span><span class="m">3</span>.7.2<span class="w"> </span>hvplot<span class="w"> </span>geoviews<span class="w"> </span>rioxarray<span class="w"> </span>rasterio<span class="w"> </span>geopandas<span class="w"> </span><span class="nv">fiona</span><span class="o">=</span><span class="m">1</span>.9.4<span class="w"> </span>jupyter<span class="w"> </span>earthaccess<span class="w"> </span>jupyter_bokeh<span class="w"> </span>h5py<span class="w"> </span>h5netcdf<span class="w"> </span>spectral<span class="w"> </span>scikit-image<span class="w"> </span>seaborn<span class="w"> </span>jupyterlab<span class="w"> </span>dask<span class="w"> </span>ray-default<span class="w"> </span>leafmap<span class="w"> </span>hypercoast
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
@@ -535,17 +537,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">hypercoast</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">hypercoast</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;hypercoast&#39;
 </pre></div>
 </div>
 </div>
@@ -563,11 +554,6 @@ document.write(`
 
 <span class="c1"># Now you have the file path for the locally stored file</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using local file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using local file: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\S2A_MSIL1C_20160920T164452_N0204_R083_T15RYN_20160920T164450.SAFE.zip
 </pre></div>
 </div>
 </div>
@@ -598,13 +584,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
-C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win_20231023.0.tar.gz already exists. Skip downloading.
-Acolite directory: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acolite_py_win
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="run-acolite">
@@ -613,11 +592,6 @@ Acolite directory: C:\Users\C00553090\Downloads\Sediment_data\Sediment_data\acol
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
 <span class="n">out_dir</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\C00553090\\Downloads\\Sediment_data\\Sediment_data\\output&#39;
 </pre></div>
 </div>
 </div>
