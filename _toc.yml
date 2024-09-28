@@ -25,7 +25,7 @@ parts:
       - file: book/labs/lab1c
       - file: book/labs/lab2a_acolite
       - file: book/labs/lab2b
-      - file: book/labs/lab3a
+      - file: book/labs/lab3
       
 # Or you organize the TOC by parts
 
