@@ -1,0 +1,1689 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab3c - Image Classification &#8212; ENVS473 Remote Sensing of Environment</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/labs/lab3c';</script>
+    <link rel="canonical" href="https://envs473.bingqingliu.com/book/labs/lab3c.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Lab3b - Visualization and Analysis of Brazil Floods 2024" href="lab3b.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="ENVS473 Remote Sensing of Environment - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="ENVS473 Remote Sensing of Environment - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/instructor.html">Instructor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture01.html">Lecture01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture02.html">Lecture02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture03.html">Lecture03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture04.html">Lecture04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture05.html">Lecture05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture06.html">Lecture06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture07.html">Lecture07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture08.html">Lecture08</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1a.html">Lab1a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_1.html">Lab1b_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_2.html">Lab1b_2</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lab1c.html">Lab1c</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2a_acolite.html">Lab2a</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2b.html">Lab2b (for fun)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab3a.html">Lab3a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3b.html">Lab3b - Visualization and Analysis of Brazil Floods 2024</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab3c - Image Classification</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bingqing-liu/ENVS473-Remote-Sensing/main?urlpath=tree/book/labs/lab3c.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/bingqing-liu/ENVS473-Remote-Sensing/blob/main/book/labs/lab3c.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/edit/main/book/labs/lab3c.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/issues/new?title=Issue%20on%20page%20%2Fbook/labs/lab3c.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/labs/lab3c.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab3c - Image Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification">Unsupervised classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification">Supervised classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-assessment">Accuracy assessment</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab3c-image-classification">
+<h1>Lab3c - Image Classification<a class="headerlink" href="#lab3c-image-classification" title="Link to this heading">#</a></h1>
+<section id="unsupervised-classification">
+<h2>Unsupervised classification<a class="headerlink" href="#unsupervised-classification" title="Link to this heading">#</a></h2>
+<p>Unsupervised classification is a machine learning technique that groups similar pixels into classes based on their spectral characteristics. Earth Engine provides the <code class="docutils literal notranslate"><span class="pre">ee.Clusterer</span></code> class for performing unsupervised classification. The supported clustering algorithms include: <code class="docutils literal notranslate"><span class="pre">wekaKmeans</span></code>, <code class="docutils literal notranslate"><span class="pre">wekaXmeans</span></code>, <code class="docutils literal notranslate"><span class="pre">wekaCascadeKMeans</span></code>, <code class="docutils literal notranslate"><span class="pre">wekaCobweb</span></code>, and <code class="docutils literal notranslate"><span class="pre">wekaVQ</span></code>. The general workflow for performing unsupervised classification in Earth Engine is as follows:</p>
+<ol class="arabic simple">
+<li><p>Prepare a multiband image for classification.</p></li>
+<li><p>Generate training samples from the image.</p></li>
+<li><p>Initialize a clusterer and adjust the parameters as needed.</p></li>
+<li><p>Train the clusterer using the training samples.</p></li>
+<li><p>Apply the clusterer to the image.</p></li>
+<li><p>Label the clusters as needed.</p></li>
+<li><p>Export the classified image.</p></li>
+</ol>
+<p>The following example demonstrates how to perform unsupervised classification on a Landsat 9 image. First, filter the Landsat 9 image collection by a region of interest and date range. Select the least cloudy image and select the seven spectral bands. Note that a scaling factor of 0.0000275 and a bias of -0.2 are applied to the image to convert the DN values to reflectance values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install geemap geedim</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
+<span class="kn">import</span> <span class="nn">geemap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\C00553090\AppData\Local\miniconda3\envs\hypercoast\lib\site-packages\pandas\core\computation\expressions.py:21: UserWarning: Pandas requires version &#39;2.8.4&#39; or newer of &#39;numexpr&#39; (version &#39;2.7.3&#39; currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+
+<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">90.7664</span><span class="p">,</span> <span class="mf">29.9411</span><span class="p">])</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LC09/C02/T1_L2&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-12-31&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;SR_B[1-7]&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">region</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+<span class="c1"># Convert from integer to float</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">0.0000275</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">toDictionary</span><span class="p">())</span>
+<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">]}</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;Landsat-9&quot;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "30bfa2183f2f4445bccebb980982090e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Next, use the <code class="docutils literal notranslate"><span class="pre">get_info()</span></code> function to inspect the image metadata and inspect it in a tree structure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">get_info</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1ad21552c10847ec9f60c2b6a8e4edfd", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>You can also get an image property using the <code class="docutils literal notranslate"><span class="pre">get()</span></code> method. For example, to get the image acquisition date:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DATE_ACQUIRED&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2022-04-07&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>To check the image cloud cover:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the image ready, you can now generate training samples. You can specify a region where the training samples will be generated. There are several ways to create a region for generating training samples:</p>
+<ul class="simple">
+<li><p>Draw a shape (e.g., rectangle) on the map and the use <code class="docutils literal notranslate"><span class="pre">region</span> <span class="pre">=</span> <span class="pre">m.user_roi</span></code></p></li>
+<li><p>Define a geometry, such as <code class="docutils literal notranslate"><span class="pre">region</span> <span class="pre">=</span> <span class="pre">ee.Geometry.Rectangle([xmin,</span> <span class="pre">ymin,</span> <span class="pre">xmax,</span> <span class="pre">ymax])</span></code></p></li>
+<li><p>Create a buffer around a point, such as <code class="docutils literal notranslate"><span class="pre">region</span> <span class="pre">=</span> <span class="pre">ee.Geometry.Point([x,</span> <span class="pre">y]).buffer(v)</span></code></p></li>
+<li><p>If you don’t define a region, it will use the image footprint by default</p></li>
+</ul>
+<p>The following code generates 5000 training samples from the image and add them to the m. Note that the <code class="docutils literal notranslate"><span class="pre">region</span></code> parameter is not specified, so the image footprint will be used as the region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span>
+        <span class="c1"># &quot;region&quot;: region,</span>
+        <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="s1">&#39;numPixels&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span><span class="c1">#&#39;numPixels&#39;: 5000: This limits the sample to 5,000 pixels from the image. It means that 5,000 random pixels will be extracted from the image.</span>
+        <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># &#39;seed&#39;: 0: This provides a seed for randomization. The same seed ensures that the sampling process is reproducible; the same pixels will be selected every time you run this code.</span>
+        <span class="s1">&#39;geometries&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Set this to False to ignore geometries</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Training samples&#39;</span><span class="p">)</span> <span class="c1"># &#39;Training samples&#39; is the name of the layer that will be displayed on the map.</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "30bfa2183f2f4445bccebb980982090e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>To inspect the attribute table of training data, use the <code class="docutils literal notranslate"><span class="pre">ee_to_df()</span></code> function on the first few features of the collection:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">training</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SR_B1</th>
+      <th>SR_B2</th>
+      <th>SR_B3</th>
+      <th>SR_B4</th>
+      <th>SR_B5</th>
+      <th>SR_B6</th>
+      <th>SR_B7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.007653</td>
+      <td>0.018487</td>
+      <td>0.021650</td>
+      <td>0.016288</td>
+      <td>0.020742</td>
+      <td>0.033282</td>
+      <td>0.032512</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.037518</td>
+      <td>0.040625</td>
+      <td>0.070765</td>
+      <td>0.051818</td>
+      <td>0.329485</td>
+      <td>0.193003</td>
+      <td>0.106598</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.038040</td>
+      <td>0.042907</td>
+      <td>0.073873</td>
+      <td>0.057015</td>
+      <td>0.335865</td>
+      <td>0.187833</td>
+      <td>0.097577</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.037105</td>
+      <td>0.043182</td>
+      <td>0.062845</td>
+      <td>0.052725</td>
+      <td>0.047308</td>
+      <td>0.036307</td>
+      <td>0.030230</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.007142</td>
+      <td>0.004242</td>
+      <td>0.017388</td>
+      <td>0.022172</td>
+      <td>0.039772</td>
+      <td>0.032018</td>
+      <td>0.027095</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.001395</td>
+      <td>0.000667</td>
+      <td>0.001850</td>
+      <td>-0.004805</td>
+      <td>-0.001257</td>
+      <td>0.011475</td>
+      <td>0.012712</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-0.003980</td>
+      <td>0.009632</td>
+      <td>0.015600</td>
+      <td>0.010293</td>
+      <td>0.016095</td>
+      <td>0.026600</td>
+      <td>0.026627</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.002812</td>
+      <td>0.009990</td>
+      <td>0.014198</td>
+      <td>0.010650</td>
+      <td>0.014967</td>
+      <td>0.026353</td>
+      <td>0.025968</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>-0.007747</td>
+      <td>0.002125</td>
+      <td>0.012987</td>
+      <td>0.004875</td>
+      <td>0.006717</td>
+      <td>0.018982</td>
+      <td>0.019285</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.040350</td>
+      <td>0.045410</td>
+      <td>0.053990</td>
+      <td>0.049177</td>
+      <td>0.045300</td>
+      <td>0.042742</td>
+      <td>0.037765</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>-0.000790</td>
+      <td>0.007433</td>
+      <td>0.014775</td>
+      <td>0.010045</td>
+      <td>0.014802</td>
+      <td>0.028745</td>
+      <td>0.028250</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>-0.012395</td>
+      <td>-0.000845</td>
+      <td>0.014060</td>
+      <td>0.008038</td>
+      <td>0.011200</td>
+      <td>0.022503</td>
+      <td>0.022970</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>-0.014485</td>
+      <td>-0.003705</td>
+      <td>0.013097</td>
+      <td>0.008065</td>
+      <td>0.010430</td>
+      <td>0.022503</td>
+      <td>0.022283</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.068565</td>
+      <td>0.081958</td>
+      <td>0.107368</td>
+      <td>0.122327</td>
+      <td>0.097413</td>
+      <td>0.044503</td>
+      <td>0.039250</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.016122</td>
+      <td>0.022723</td>
+      <td>0.056960</td>
+      <td>0.033585</td>
+      <td>0.343042</td>
+      <td>0.142128</td>
+      <td>0.066420</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.007763</td>
+      <td>0.016232</td>
+      <td>0.021127</td>
+      <td>0.017470</td>
+      <td>0.022393</td>
+      <td>0.031358</td>
+      <td>0.030670</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.033145</td>
+      <td>0.037710</td>
+      <td>0.048655</td>
+      <td>0.048545</td>
+      <td>0.033557</td>
+      <td>0.026572</td>
+      <td>0.023190</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>-0.001422</td>
+      <td>0.006662</td>
+      <td>0.009467</td>
+      <td>0.004655</td>
+      <td>0.009715</td>
+      <td>0.023300</td>
+      <td>0.023273</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.059682</td>
+      <td>0.071122</td>
+      <td>0.086357</td>
+      <td>0.096725</td>
+      <td>0.085065</td>
+      <td>0.046840</td>
+      <td>0.040267</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.028415</td>
+      <td>0.038837</td>
+      <td>0.067493</td>
+      <td>0.064990</td>
+      <td>0.241980</td>
+      <td>0.199575</td>
+      <td>0.119358</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The training data is ready. Next, you need to initialize a clusterer and train it using the training data. The following code initializes a <code class="docutils literal notranslate"><span class="pre">wekaKmeans</span></code> clusterer and trains it using the training data by specifying the number of clusters (e.g., 5):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This specifies the number of clusters you want to create.</span>
+<span class="c1"># In this case, 5 clusters will be formed. These clusters represent different groups or classes of pixels that share similar characteristics based on their spectral values (or other features).</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1">#ee.Clusterer is a clustering module in Google Earth Engine that provides access to clustering algorithms.</span>
+<span class="c1"># wekaKMeans() is the specific clustering algorithm being used, which is the K-Means algorithm from the WEKA library (a machine learning toolkit).</span>
+<span class="c1"># K-Means is an unsupervised learning algorithm used to partition the data into K clusters. The goal is to group pixels based on their similarity, with the number of clusters defined by n_clusters (in this case, 5).</span>
+<span class="n">clusterer</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Clusterer</span><span class="o">.</span><span class="n">wekaKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">training</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<p>With the clusterer trained, you can now apply it to the image. The following code applies the clusterer to the image and adds the classified image to the map with a random color palette:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">clusterer</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">randomVisualizer</span><span class="p">(),</span> <span class="p">{},</span> <span class="s1">&#39;clusters&#39;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "30bfa2183f2f4445bccebb980982090e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Note the value and color of each cluster are randomly assigned. Use the Inspector tool to inspect the value of each cluster and label them as needed. Define a legend dictionary with pairs of cluster labels and colors, which can be used to create a legend for the classified image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">legend_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Developed&#39;</span><span class="p">:</span> <span class="s1">&#39;#466b9f&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Forest&#39;</span><span class="p">:</span> <span class="s1">&#39;#ab0000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Crop&#39;</span><span class="p">:</span> <span class="s1">&#39;#d99282&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Wetllands&#39;</span><span class="p">:</span> <span class="s1">&#39;#1c5f2c&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Open Water&#39;</span><span class="p">:</span> <span class="s1">&#39;#ab6c28&#39;</span>
+
+<span class="p">}</span>
+
+<span class="n">palette</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">legend_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span>
+    <span class="n">result</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;palette&#39;</span><span class="p">:</span> <span class="n">palette</span><span class="p">},</span> <span class="s1">&#39;Labelled clusters&#39;</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Land Cover Type&#39;</span><span class="p">,</span><span class="n">legend_dict</span><span class="o">=</span><span class="n">legend_dict</span> <span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;bottomright&#39;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "30bfa2183f2f4445bccebb980982090e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>The unsupervised classification result is shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">ch06_unsupervised_classification</span></code>.</p>
+<p>Finally, you can export the classified image to your computer. Specify the image region, scale, and output file path as needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">download_ee_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;unsupervised.tif&#39;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="supervised-classification">
+<h2>Supervised classification<a class="headerlink" href="#supervised-classification" title="Link to this heading">#</a></h2>
+<p>Supervised classification is a machine learning technique that uses labeled training data to classify an image. The training data is used to train a classifier, which is then applied to the image to generate a classified image. Earth Engine provides the <code class="docutils literal notranslate"><span class="pre">ee.Classifier</span></code> class for performing supervised classification. The supported supervised classification algorithms include: <a class="reference external" href="https://en.wikipedia.org/wiki/Decision_tree_learning">Classification and Regression Trees (CART)</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Support_vector_machine">Support Vector Machine (SVM)</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient Tree Boost</a>. The general workflow for supervised classification is as follows:</p>
+<ol class="arabic simple">
+<li><p>Prepare an image for classification.</p></li>
+<li><p>Collect training data. Each training sample should have a class label and a set of properties storing numeric values for the predictors.</p></li>
+<li><p>Initialize a classifier and set its parameters as needed.</p></li>
+<li><p>Train the classifier using the training data.</p></li>
+<li><p>Apply the classifier to the image.</p></li>
+<li><p>Perform accuracy assessment.</p></li>
+<li><p>Export the classified image.</p></li>
+</ol>
+<p>In this section, you will learn how to perform supervised classification using the CART algorithm. You can easily adapt the code to other supervised classification algorithms, such as SVM and Random Forest. We will use labeled training data from the <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/USGS_NLCD_RELEASES_2019_REL_NLCD">USGS National Land Cover Database (NLCD)</a> dataset and train a CART classifier using the training data. The trained classifier will then be applied to the Landsat-9 image to generate a classified image.</p>
+<p>First, filter the <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Landsat 8 image collection</a> to select a cloud-free image acquired in 2019 for your region of interest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">122.4439</span><span class="p">,</span> <span class="mf">37.7538</span><span class="p">])</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LC08/C02/T1_L2&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-01&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;SR_B[1-7]&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">0.0000275</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">toDictionary</span><span class="p">())</span>
+<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">]}</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;Landsat-8&quot;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">get_info()</span></code> function to check the image properties:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">get_info</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a specific image property, use the <code class="docutils literal notranslate"><span class="pre">get()</span></code> method with the property name as the argument. For example, to retrieve the image acquisition date:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DATE_ACQUIRED&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To check the cloud cover of the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, create a training dataset from the NLCD dataset, which is a 30-m resolution dataset covering the conterminous United States. The NLCD dataset contains 21 land cover classes. A detailed description of each NLCD land cover type can be found at <a class="reference external" href="https://bit.ly/3EyvacV">https://bit.ly/3EyvacV</a>. The following code filters the NLCD dataset to select the land cover image of interest and clips the dataset to the region of interest (the footprint of the selected Landsat image in the previous step):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;USGS/NLCD_RELEASES/2019_REL/NLCD/2019&#39;</span><span class="p">)</span>
+<span class="n">landcover</span> <span class="o">=</span> <span class="n">nlcd</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;landcover&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">landcover</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;NLCD Landcover&#39;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the land cover image ready, we can now sample the image to collect training data with land cover labels. Similar to the unsupervised classification introduced above, you can specify a region of interest, scale, and number of points to sample. The following code samples 5000 points from the land cover image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">landcover</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span>
+        <span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">(),</span>
+        <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="s1">&#39;numPixels&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;geometries&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;training&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the resulting number of training samples may be less than the specified number of points. This is because the sampling algorithm will discard pixels with no data values. To check the number of training samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Revise the number of points to sample in the previous step if needed.</p>
+<p>Next, we will add the spectral bands of the Landsat image to the training data. Note that the training data created from the previous step already contains the land cover labels (i.e., the <code class="docutils literal notranslate"><span class="pre">landcover</span></code> property). The following code adds the seven spectral bands of the Landsat image to the training data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B7&#39;</span><span class="p">]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;landcover&#39;</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">sampleRegions</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;collection&#39;</span><span class="p">:</span> <span class="n">points</span><span class="p">,</span> <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dislay the attribute table of the training data using the <code class="docutils literal notranslate"><span class="pre">ee_to_df()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The training dataset is ready. You can now train a classifier using the training data. The following code initializes a <a class="reference external" href="https://developers.google.com/earth-engine/apidocs/ee-classifier-smilecart">CART classifier</a> and trains it using the training data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span>
+    <span class="s1">&#39;classProperty&#39;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
+    <span class="s1">&#39;inputProperties&#39;</span><span class="p">:</span> <span class="n">bands</span><span class="p">,</span>
+
+<span class="p">}</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Classifier</span><span class="o">.</span><span class="n">smileCart</span><span class="p">(</span><span class="n">maxNodes</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">features</span></code> parameter specifies the training data. The <code class="docutils literal notranslate"><span class="pre">classProperty</span></code> parameter specifies the property name of the training data that contains the class labels. The <code class="docutils literal notranslate"><span class="pre">inputProperties</span></code> parameter specifies the property names of the training data that contain the predictor values.</p>
+<p>All Earth Engine classifiers have a <code class="docutils literal notranslate"><span class="pre">train()</span></code> function to train the classifier using the training data. The CART classifier has a <code class="docutils literal notranslate"><span class="pre">maxNodes</span></code> parameter to specify the maximum number of nodes in the tree. The default value is <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means that the tree will be grown until all leaves are pure or until all leaves contain less than 5 training samples.</p>
+<p>Since the classifier has been trained, you can now apply it to the Landsat image to generate a classified image. Make sure you use the same spectral bands as the training data. The following code applies the trained classifier to the selected Landsat image and adds the classified image with a random color palette to the map:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classified</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">classifier</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;landcover&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">classified</span><span class="o">.</span><span class="n">randomVisualizer</span><span class="p">(),</span> <span class="p">{},</span> <span class="s1">&#39;Classified&#39;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To compare the classified image with the referenced NLCD land cover image, it is better to use the same color palette. To set the color palette of an Earth Engine image with a predefined palette, set the <code class="docutils literal notranslate"><span class="pre">bandname_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">bandname_class_palette</span></code> properties of the image. For example, the NLCD land cover has the <code class="docutils literal notranslate"><span class="pre">landcover_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">landcover_class_palette</span></code> properties. When the land cover band is added to the map, the color palette will be automatically applied so that users don’t have to specify the color palette manually. To check the color palette of the NLCD land cover image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">get_info</span><span class="p">(</span><span class="n">nlcd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the same approach to set the color palette of the classified image. Note that in the previous step, we already renamed the classified image band to <code class="docutils literal notranslate"><span class="pre">landcover</span></code>. Therefore, we can use the <code class="docutils literal notranslate"><span class="pre">landcover_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">landcover_class_palette</span></code> properties to set the color palette of the classified image. The following code sets the color palette of the classified image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_values</span> <span class="o">=</span> <span class="n">nlcd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;landcover_class_values&#39;</span><span class="p">)</span>
+<span class="n">class_palette</span> <span class="o">=</span> <span class="n">nlcd</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;landcover_class_palette&#39;</span><span class="p">)</span>
+<span class="n">classified</span> <span class="o">=</span> <span class="n">classified</span><span class="o">.</span><span class="n">set</span><span class="p">({</span>
+    <span class="s1">&#39;landcover_class_values&#39;</span><span class="p">:</span> <span class="n">class_values</span><span class="p">,</span>
+    <span class="s1">&#39;landcover_class_palette&#39;</span><span class="p">:</span> <span class="n">class_palette</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The classified image should now have the same color palette as the NLCD land cover image. Add the classified image and associated legend to the map:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">classified</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Land cover&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Land cover type&quot;</span><span class="p">,</span> <span class="n">builtin_legend</span><span class="o">=</span><span class="s1">&#39;NLCD&#39;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the layer control widget to change the opacity of the classified image and compare it visually with the NLCD land cover image. You might need to use the full-screen mode as the legend may block the view of layer control widget.</p>
+<p>Finally, you can export the classified image to your computer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geemap</span><span class="o">.</span><span class="n">download_ee_image</span><span class="p">(</span>
+    <span class="n">landcover</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;supervised.tif&#39;</span><span class="p">,</span>
+    <span class="n">region</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">(),</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mi">30</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="accuracy-assessment">
+<h2>Accuracy assessment<a class="headerlink" href="#accuracy-assessment" title="Link to this heading">#</a></h2>
+<p>After performing image classification, you may want to assess the accuracy of the classification. Earth Engine provides several functions for assessing the accuracy of a classification. In this section, we will classify a Sentinel-2 image using <a class="reference external" href="https://en.wikipedia.org/wiki/Random_forest">random forest</a> and assess the accuracy of the classification.</p>
+<p>First, filter the Sentinel-2 image collection and select an image for your region of interest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">122.4439</span><span class="p">,</span> <span class="mf">37.7538</span><span class="p">])</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;CLOUDY_PIXEL_PERCENTAGE&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;B.*&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">3500</span><span class="p">,</span> <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B11&#39;</span><span class="p">,</span>  <span class="s1">&#39;B8&#39;</span><span class="p">,</span>  <span class="s1">&#39;B3&#39;</span><span class="p">]}</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;Sentinel-2&quot;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v100">ESA 10-m WorldCover</a> can be used to create labeled training data. First, we need to remap the land cover class values to a 0-based sequential series so that we can create a confusion matrix later:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lc</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;ESA/WorldCover/v100/2020&#39;</span><span class="p">)</span>
+<span class="n">classValues</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">remapValues</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">List</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;lc&#39;</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">remap</span><span class="p">(</span><span class="n">classValues</span><span class="p">,</span> <span class="n">remapValues</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">toByte</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, add the ESA land cover as a band of the Sentinel-2 reflectance image and sample 100 pixels at a 10m scale from each land cover class within the region of interest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">addBands</span><span class="p">(</span><span class="n">lc</span><span class="p">)</span><span class="o">.</span><span class="n">stratifiedSample</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+  <span class="s1">&#39;numPoints&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s1">&#39;classBand&#39;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
+  <span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">geometry</span><span class="p">(),</span>
+  <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s1">&#39;geometries&#39;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add a random value field to the sample and use it to approximately split 80% of the features into a training set and 20% into a validation set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">randomColumn</span><span class="p">()</span>
+<span class="n">trainingSample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;random &lt;= 0.8&#39;</span><span class="p">)</span>
+<span class="n">validationSample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;random &gt; 0.8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the training data ready, we can train a random forest classifier using the training data.</p>
+<p>The following code trains a random forest classifier with 10 trees:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainedClassifier</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Classifier</span><span class="o">.</span><span class="n">smileRandomForest</span><span class="p">(</span><span class="n">numberOfTrees</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+  <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="n">trainingSample</span><span class="p">,</span>
+  <span class="s1">&#39;classProperty&#39;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
+  <span class="s1">&#39;inputProperties&#39;</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get information about the trained classifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results of trained classifier&#39;</span><span class="p">,</span> <span class="n">trainedClassifier</span><span class="o">.</span><span class="n">explain</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a confusion matrix and overall accuracy for the training sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span> <span class="o">=</span> <span class="n">trainedClassifier</span><span class="o">.</span><span class="n">confusionMatrix</span><span class="p">()</span>
+<span class="n">trainAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[[81, 0, 0, 0, 1, 0, 0, 0, 0],
+ [0, 83, 1, 0, 0, 0, 0, 0, 0],
+ [1, 1, 73, 2, 0, 0, 0, 0, 0],
+ [0, 0, 1, 77, 0, 0, 0, 0, 0],
+ [0, 0, 0, 1, 81, 1, 0, 0, 0],
+ [0, 1, 2, 3, 2, 70, 0, 0, 2],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 71, 0],
+ [1, 0, 0, 1, 0, 4, 0, 0, 71]]
+</pre></div>
+</div>
+<p>The horizontal axis of the confusion matrix corresponds to the input classes, and the vertical axis corresponds to the output classes. The rows and columns start at class 0 and increase sequentially up to the maximum class value, so some rows or columns might be empty if the input classes aren’t 0-based or sequential. That’s the reason why we remapped the ESA land cover class values to a 0-based sequential series earlier. Note that your confusion matrix may look slightly different from the one shown above as the training data is randomly sampled.</p>
+<p>The overall accuracy essentially tells us what proportion of al the reference sites was mapped correctly. The overall accuracy is usually expressed as a percent, with 100% accuracy being a perfect classification where all reference sites were classified correctly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">accuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Kappa Coefficient is generated from a statistical test to evaluate the accuracy of a classification. Kappa essentially evaluates how well the classification performed as compared to just randomly assigning values, i.e., did the classification do better than random? The Kappa Coefficient can range from -1 to 1. A value of 0 indicated that the classification is no better than a random classification. A negative number indicates the classification is significantly worse than random. A value close to 1 indicates that the classification is significantly better than random.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">kappa</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a confusion matrix and overall accuracy for the validation sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationSample</span> <span class="o">=</span> <span class="n">validationSample</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">trainedClassifier</span><span class="p">)</span>
+<span class="n">validationAccuracy</span> <span class="o">=</span> <span class="n">validationSample</span><span class="o">.</span><span class="n">errorMatrix</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;classification&#39;</span><span class="p">)</span>
+<span class="n">validationAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[[13, 1, 3, 0, 1, 0, 0, 0, 0],
+ [0, 11, 2, 0, 1, 0, 0, 0, 2],
+ [1, 0, 12, 7, 1, 2, 0, 0, 0],
+ [0, 3, 6, 9, 3, 1, 0, 0, 0],
+ [2, 0, 3, 0, 10, 2, 0, 0, 0],
+ [1, 1, 1, 3, 7, 6, 0, 0, 1],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 29, 0],
+ [2, 2, 2, 0, 2, 2, 0, 0, 13]]
+</pre></div>
+</div>
+<p>To compute the overall accuracy for the validation sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">accuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Producer’s Accuracy, also known as the Sensitivity or Recall, is a measure of how well a classifier correctly identifies positive instances. It is the ratio of true positive classifications to the total number of actual positive instances. This metric is used to evaluate the performance of a classifier when the focus is on minimizing false negatives (i.e., instances that are actually positive but are classified as negative).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">producersAccuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>On the other hand, Consumer’s Accuracy, also known as Precision, is a measure of how well a classifier correctly identifies negative instances. It is the ratio of true negative classifications to the total number of actual negative instances. This metric is used to evaluate the performance of a classifier when the focus is on minimizing false positives (i.e., instances that are actually negative but are classified as positive).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">consumersAccuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The confusion matrices can be saved as a csv file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;training.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;validation.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the validation accuracy is acceptable, the trained classifier can then be applied to the entire image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imgClassified</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">trainedClassifier</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lastly, add the resulting data layers (e.g., Sentinel-2 image, classified image, training and validation samples) to the m. Use the layer control widget the change the opacity of the classified image and compare it to the ESA WorldCover.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classVis</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s1">&#39;palette&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;006400&#39;</span> <span class="p">,</span><span class="s1">&#39;ffbb22&#39;</span><span class="p">,</span> <span class="s1">&#39;ffff4c&#39;</span><span class="p">,</span> <span class="s1">&#39;f096ff&#39;</span><span class="p">,</span> <span class="s1">&#39;fa0000&#39;</span><span class="p">,</span> <span class="s1">&#39;b4b4b4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;f0f0f0&#39;</span><span class="p">,</span> <span class="s1">&#39;0064c8&#39;</span><span class="p">,</span> <span class="s1">&#39;0096a0&#39;</span><span class="p">,</span> <span class="s1">&#39;00cf75&#39;</span><span class="p">,</span> <span class="s1">&#39;fae6a0&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span> <span class="n">classVis</span><span class="p">,</span> <span class="s1">&#39;ESA Land Cover&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">imgClassified</span><span class="p">,</span> <span class="n">classVis</span><span class="p">,</span> <span class="s1">&#39;Classified&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">trainingSample</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">},</span> <span class="s1">&#39;Training sample&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">validationSample</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="s1">&#39;Validation sample&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Land Cover Type&#39;</span><span class="p">,</span> <span class="n">builtin_legend</span><span class="o">=</span><span class="s1">&#39;ESA_WorldCover&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "bingqing-liu/ENVS473-Remote-Sensing",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/labs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab3b.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab3b - Visualization and Analysis of Brazil Floods 2024</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-classification">Unsupervised classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-classification">Supervised classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-assessment">Accuracy assessment</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bingqing Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
