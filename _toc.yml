@@ -18,6 +18,7 @@ parts:
       - file: book/lectures/lecture05
       - file: book/lectures/lecture06
       - file: book/lectures/lecture07
+      - file: book/lectures/lecture08
   - caption: Labs
     chapters:
       - file: book/labs/lab1a
@@ -28,6 +29,7 @@ parts:
       - file: book/labs/lab2b
       - file: book/labs/lab3a
       - file: book/labs/lab3b
+      - file: book/labs/lab3c
       
 # Or you organize the TOC by parts
 
