@@ -1180,12 +1180,14 @@ document.write(`
 <li><p>Perform accuracy assessment.</p></li>
 <li><p>Export the classified image.</p></li>
 </ol>
-<p>In this section, you will learn how to perform supervised classification using the CART algorithm. You can easily adapt the code to other supervised classification algorithms, such as SVM and Random Forest. We will use labeled training data from the <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/USGS_NLCD_RELEASES_2019_REL_NLCD">USGS National Land Cover Database (NLCD)</a> dataset and train a CART classifier using the training data. The trained classifier will then be applied to the Landsat-9 image to generate a classified image.</p>
+<p>In this section, you will learn how to perform supervised classification using the CART algorithm. You can easily adapt the code to other supervised classification algorithms, such as Support Vector Machine (SVM) and Random Forest. We will use labeled training data from the <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/USGS_NLCD_RELEASES_2019_REL_NLCD">USGS National Land Cover Database (NLCD)</a> dataset and train a CART classifier using the training data. The trained classifier will then be applied to the Landsat-9 image to generate a classified image.</p>
 <p>First, filter the <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Landsat 8 image collection</a> to select a cloud-free image acquired in 2019 for your region of interest:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
-<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">122.4439</span><span class="p">,</span> <span class="mf">37.7538</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This initializes an interactive map object using the geemap library</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="c1"># This creates a point geometry object in Earth Engine, representing a location at coordinates</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
 
 <span class="n">image</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LC08/C02/T1_L2&#39;</span><span class="p">)</span>
@@ -1197,7 +1199,7 @@ document.write(`
 <span class="p">)</span>
 
 <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">0.0000275</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">toDictionary</span><span class="p">())</span>
-<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">]}</span>
+<span class="n">vis_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">]}</span>
 
 <span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="s2">&quot;Landsat-8&quot;</span><span class="p">)</span>
@@ -1205,6 +1207,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7ba534c560ad4a35bb729e3fbbc16810", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">get_info()</span></code> function to check the image properties:</p>
 <div class="cell docutils container">
@@ -1213,11 +1239,62 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "dac9c7ea32bd4a99a679ce18cb6d8e1b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>To get a specific image property, use the <code class="docutils literal notranslate"><span class="pre">get()</span></code> method with the property name as the argument. For example, to retrieve the image acquisition date:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DATE_ACQUIRED&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2019-03-06&#39;
 </pre></div>
 </div>
 </div>
@@ -1229,27 +1306,84 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02
+</pre></div>
+</div>
+</div>
 </div>
 <p>Next, create a training dataset from the NLCD dataset, which is a 30-m resolution dataset covering the conterminous United States. The NLCD dataset contains 21 land cover classes. A detailed description of each NLCD land cover type can be found at <a class="reference external" href="https://bit.ly/3EyvacV">https://bit.ly/3EyvacV</a>. The following code filters the NLCD dataset to select the land cover image of interest and clips the dataset to the region of interest (the footprint of the selected Landsat image in the previous step):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlcd</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;USGS/NLCD_RELEASES/2019_REL/NLCD/2019&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This line loads the NLCD 2019 dataset from the USGS (United States Geological Survey) as an Earth Engine Image object. </span>
+<span class="c1"># The ee.Image function creates an image object from the specified data source, in this case, the 2019 NLCD.</span>
+<span class="n">nlcd</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;USGS/NLCD_RELEASES/2019_REL/NLCD/2019&#39;</span><span class="p">)</span>
+<span class="c1"># This selects the land cover classification band from the NLCD image.</span>
 <span class="n">landcover</span> <span class="o">=</span> <span class="n">nlcd</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;landcover&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">landcover</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;NLCD Landcover&#39;</span><span class="p">)</span>
 <span class="n">m</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7ba534c560ad4a35bb729e3fbbc16810", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>With the land cover image ready, we can now sample the image to collect training data with land cover labels. Similar to the unsupervised classification introduced above, you can specify a region of interest, scale, and number of points to sample. The following code samples 5000 points from the land cover image:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">landcover</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># his code samples points from the landcover image within a specified region. </span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">landcover</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
     <span class="o">**</span><span class="p">{</span>
         <span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">geometry</span><span class="p">(),</span>
         <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
         <span class="s1">&#39;numPixels&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="c1"># seed: A seed value for randomization, ensuring reproducibility of the sample. A seed of 0 is used.</span>
         <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="c1"># When set to True, the sampled points are returned as geometries, meaning they include geographic coordinates for each sampled pixel.</span>
         <span class="s1">&#39;geometries&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
@@ -1258,6 +1392,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>Note that the resulting number of training samples may be less than the specified number of points. This is because the sampling algorithm will discard pixels with no data values. To check the number of training samples:</p>
 <div class="cell docutils container">
@@ -1266,19 +1424,80 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5000
+</pre></div>
+</div>
+</div>
 </div>
 <p>Revise the number of points to sample in the previous step if needed.</p>
 <p>Next, we will add the spectral bands of the Landsat image to the training data. Note that the training data created from the previous step already contains the land cover labels (i.e., the <code class="docutils literal notranslate"><span class="pre">landcover</span></code> property). The following code adds the seven spectral bands of the Landsat image to the training data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B7&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This defines a list of band names that correspond to different spectral bands from the satellite image.</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B7&#39;</span><span class="p">]</span>
 <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;landcover&#39;</span>
+<span class="c1"># This part of the code creates a new set of features by sampling the selected bands from the image at the locations defined in the points collection. </span>
+
+<span class="c1">#.sampleRegions(): This function samples the pixel values from the image at specific geographical locations. </span>
+<span class="c1"># These locations are defined by the points collection that was created earlier. </span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span><span class="o">.</span><span class="n">sampleRegions</span><span class="p">(</span>
-    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;collection&#39;</span><span class="p">:</span> <span class="n">points</span><span class="p">,</span> <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;collection&#39;</span><span class="p">:</span> <span class="n">points</span><span class="p">,</span> 
+       <span class="c1"># &#39;properties&#39;: [label]: This ensures that the land cover property (&#39;landcover&#39;) is included in the sampled data. </span>
+       <span class="c1">#  It adds this label as an attribute to each feature, so the feature collection has both reflectance and the landcover labels.</span>
+       <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">label</span><span class="p">],</span> 
+       <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mi">30</span>
+       <span class="p">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>Dislay the attribute table of the training data using the <code class="docutils literal notranslate"><span class="pre">ee_to_df()</span></code> function:</p>
 <div class="cell docutils container">
@@ -1287,21 +1506,169 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SR_B1</th>
+      <th>SR_B2</th>
+      <th>SR_B3</th>
+      <th>SR_B4</th>
+      <th>SR_B5</th>
+      <th>SR_B6</th>
+      <th>SR_B7</th>
+      <th>landcover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.014445</td>
+      <td>0.016343</td>
+      <td>0.028470</td>
+      <td>0.024867</td>
+      <td>0.192370</td>
+      <td>0.110365</td>
+      <td>0.055227</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.023657</td>
+      <td>0.029433</td>
+      <td>0.050003</td>
+      <td>0.038205</td>
+      <td>0.228697</td>
+      <td>0.108825</td>
+      <td>0.062295</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.021320</td>
+      <td>0.027507</td>
+      <td>0.057235</td>
+      <td>0.044255</td>
+      <td>0.185495</td>
+      <td>0.134235</td>
+      <td>0.087072</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.009632</td>
+      <td>0.015627</td>
+      <td>0.037105</td>
+      <td>0.037600</td>
+      <td>0.172268</td>
+      <td>0.101923</td>
+      <td>0.057922</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.015022</td>
+      <td>0.032073</td>
+      <td>0.064330</td>
+      <td>0.072607</td>
+      <td>0.026600</td>
+      <td>0.007433</td>
+      <td>0.008065</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>The training dataset is ready. You can now train a classifier using the training data. The following code initializes a <a class="reference external" href="https://developers.google.com/earth-engine/apidocs/ee-classifier-smilecart">CART classifier</a> and trains it using the training data:</p>
+<p>Summary of the Code:
+You define a set of parameters (params) that include the training data (features), the property to be predicted (label), and the input features (bands).
+You then create a CART decision tree classifier using Earth Engine’s smileCart algorithm, and train it using the specified parameters.
+The classifier will learn to map the input spectral bands (from satellite imagery) to the land cover classes based on the provided training data.</p>
+<p>The **params syntax unpacks the dictionary so that the features, classProperty, and inputProperties are passed directly as arguments to the training function.</p>
+<p>features provides the training data,
+classProperty defines the class to be predicted, and
+inputProperties are the features used for prediction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definine a dictionary params that contains the necessary inputs for training the classifier.</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
 
     <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span>
+    <span class="c1"># This represents the class or category that you want the classifier to predict</span>
     <span class="s1">&#39;classProperty&#39;</span><span class="p">:</span> <span class="n">label</span><span class="p">,</span>
+    <span class="c1"># This specifies the input features (predictor variables) that the classifier will use to make predictions.</span>
     <span class="s1">&#39;inputProperties&#39;</span><span class="p">:</span> <span class="n">bands</span><span class="p">,</span>
 
 <span class="p">}</span>
+
+<span class="c1"># This argument specifies the maximum number of nodes (branches) in the decision tree. </span>
+<span class="c1"># When set to None, the classifier is allowed to grow the tree fully, meaning there is no constraint on the size of the tree unless other stopping criteria are met.</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Classifier</span><span class="o">.</span><span class="n">smileCart</span><span class="p">(</span><span class="n">maxNodes</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">features</span></code> parameter specifies the training data. The <code class="docutils literal notranslate"><span class="pre">classProperty</span></code> parameter specifies the property name of the training data that contains the class labels. The <code class="docutils literal notranslate"><span class="pre">inputProperties</span></code> parameter specifies the property names of the training data that contain the predictor values.</p>
 <p>All Earth Engine classifiers have a <code class="docutils literal notranslate"><span class="pre">train()</span></code> function to train the classifier using the training data. The CART classifier has a <code class="docutils literal notranslate"><span class="pre">maxNodes</span></code> parameter to specify the maximum number of nodes in the tree. The default value is <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means that the tree will be grown until all leaves are pure or until all leaves contain less than 5 training samples.</p>
@@ -1314,6 +1681,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7ba534c560ad4a35bb729e3fbbc16810", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>To compare the classified image with the referenced NLCD land cover image, it is better to use the same color palette. To set the color palette of an Earth Engine image with a predefined palette, set the <code class="docutils literal notranslate"><span class="pre">bandname_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">bandname_class_palette</span></code> properties of the image. For example, the NLCD land cover has the <code class="docutils literal notranslate"><span class="pre">landcover_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">landcover_class_palette</span></code> properties. When the land cover band is added to the map, the color palette will be automatically applied so that users don’t have to specify the color palette manually. To check the color palette of the NLCD land cover image:</p>
 <div class="cell docutils container">
@@ -1322,6 +1713,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "5ea6ec1128d84e09a56dcd770d82d03f", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>We can use the same approach to set the color palette of the classified image. Note that in the previous step, we already renamed the classified image band to <code class="docutils literal notranslate"><span class="pre">landcover</span></code>. Therefore, we can use the <code class="docutils literal notranslate"><span class="pre">landcover_class_values</span></code> and <code class="docutils literal notranslate"><span class="pre">landcover_class_palette</span></code> properties to set the color palette of the classified image. The following code sets the color palette of the classified image:</p>
 <div class="cell docutils container">
@@ -1335,16 +1750,64 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>The classified image should now have the same color palette as the NLCD land cover image. Add the classified image and associated legend to the map:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">classified</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Land cover&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">classified</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Land cover&#39;</span><span class="p">)</span> <span class="c1"># Empty dictionary {} is where visualization parameters (such as color mapping, opacity, etc.) would normally be specified.</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Land cover type&quot;</span><span class="p">,</span> <span class="n">builtin_legend</span><span class="o">=</span><span class="s1">&#39;NLCD&#39;</span><span class="p">)</span>
 <span class="n">m</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7ba534c560ad4a35bb729e3fbbc16810", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Use the layer control widget to change the opacity of the classified image and compare it visually with the NLCD land cover image. You might need to use the full-screen mode as the legend may block the view of layer control widget.</p>
 <p>Finally, you can export the classified image to your computer:</p>
@@ -1359,6 +1822,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "5f097bf592c94fcf81977a036d9f562c", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="accuracy-assessment">
@@ -1368,7 +1855,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
-<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">122.4439</span><span class="p">,</span> <span class="mf">37.7538</span><span class="p">])</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">])</span>
 
 <span class="n">img</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2_SR&#39;</span><span class="p">)</span>
@@ -1387,6 +1874,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "f277f321a6344ce09f04b0dba675bee1", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>The <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v100">ESA 10-m WorldCover</a> can be used to create labeled training data. First, we need to remap the land cover class values to a 0-based sequential series so that we can create a confusion matrix later:</p>
 <div class="cell docutils container">
@@ -1399,6 +1910,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>Next, add the ESA land cover as a band of the Sentinel-2 reflectance image and sample 100 pixels at a 10m scale from each land cover class within the region of interest:</p>
 <div class="cell docutils container">
@@ -1413,6 +1948,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>Add a random value field to the sample and use it to approximately split 80% of the features into a training set and 20% into a validation set:</p>
 <div class="cell docutils container">
@@ -1423,6 +1982,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>With the training data ready, we can train a random forest classifier using the training data.</p>
 <p>The following code trains a random forest classifier with 10 trees:</p>
@@ -1436,113 +2019,32 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>To get information about the trained classifier:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results of trained classifier&#39;</span><span class="p">,</span> <span class="n">trainedClassifier</span><span class="o">.</span><span class="n">explain</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>To get a confusion matrix and overall accuracy for the training sample:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span> <span class="o">=</span> <span class="n">trainedClassifier</span><span class="o">.</span><span class="n">confusionMatrix</span><span class="p">()</span>
-<span class="n">trainAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[[81, 0, 0, 0, 1, 0, 0, 0, 0],
- [0, 83, 1, 0, 0, 0, 0, 0, 0],
- [1, 1, 73, 2, 0, 0, 0, 0, 0],
- [0, 0, 1, 77, 0, 0, 0, 0, 0],
- [0, 0, 0, 1, 81, 1, 0, 0, 0],
- [0, 1, 2, 3, 2, 70, 0, 0, 2],
- [0, 0, 0, 0, 0, 0, 0, 0, 0],
- [0, 0, 0, 0, 0, 0, 0, 71, 0],
- [1, 0, 0, 1, 0, 4, 0, 0, 71]]
-</pre></div>
-</div>
-<p>The horizontal axis of the confusion matrix corresponds to the input classes, and the vertical axis corresponds to the output classes. The rows and columns start at class 0 and increase sequentially up to the maximum class value, so some rows or columns might be empty if the input classes aren’t 0-based or sequential. That’s the reason why we remapped the ESA land cover class values to a 0-based sequential series earlier. Note that your confusion matrix may look slightly different from the one shown above as the training data is randomly sampled.</p>
-<p>The overall accuracy essentially tells us what proportion of al the reference sites was mapped correctly. The overall accuracy is usually expressed as a percent, with 100% accuracy being a perfect classification where all reference sites were classified correctly.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">accuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The Kappa Coefficient is generated from a statistical test to evaluate the accuracy of a classification. Kappa essentially evaluates how well the classification performed as compared to just randomly assigning values, i.e., did the classification do better than random? The Kappa Coefficient can range from -1 to 1. A value of 0 indicated that the classification is no better than a random classification. A negative number indicates the classification is significantly worse than random. A value close to 1 indicates that the classification is significantly better than random.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">kappa</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>To get a confusion matrix and overall accuracy for the validation sample:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationSample</span> <span class="o">=</span> <span class="n">validationSample</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">trainedClassifier</span><span class="p">)</span>
-<span class="n">validationAccuracy</span> <span class="o">=</span> <span class="n">validationSample</span><span class="o">.</span><span class="n">errorMatrix</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;classification&#39;</span><span class="p">)</span>
-<span class="n">validationAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[[13, 1, 3, 0, 1, 0, 0, 0, 0],
- [0, 11, 2, 0, 1, 0, 0, 0, 2],
- [1, 0, 12, 7, 1, 2, 0, 0, 0],
- [0, 3, 6, 9, 3, 1, 0, 0, 0],
- [2, 0, 3, 0, 10, 2, 0, 0, 0],
- [1, 1, 1, 3, 7, 6, 0, 0, 1],
- [0, 0, 0, 0, 0, 0, 0, 0, 0],
- [0, 0, 0, 0, 0, 0, 0, 29, 0],
- [2, 2, 2, 0, 2, 2, 0, 0, 13]]
-</pre></div>
-</div>
-<p>To compute the overall accuracy for the validation sample:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">accuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Producer’s Accuracy, also known as the Sensitivity or Recall, is a measure of how well a classifier correctly identifies positive instances. It is the ratio of true positive classifications to the total number of actual positive instances. This metric is used to evaluate the performance of a classifier when the focus is on minimizing false negatives (i.e., instances that are actually positive but are classified as negative).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">producersAccuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>On the other hand, Consumer’s Accuracy, also known as Precision, is a measure of how well a classifier correctly identifies negative instances. It is the ratio of true negative classifications to the total number of actual negative instances. This metric is used to evaluate the performance of a classifier when the focus is on minimizing false positives (i.e., instances that are actually negative but are classified as positive).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">consumersAccuracy</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The confusion matrices can be saved as a csv file:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;training.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">trainAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;validation.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">validationAccuracy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>If the validation accuracy is acceptable, the trained classifier can then be applied to the entire image:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1550,6 +2052,30 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
 </div>
 <p>Lastly, add the resulting data layers (e.g., Sentinel-2 image, classified image, training and validation samples) to the m. Use the layer control widget the change the opacity of the classified image and compare it to the ESA WorldCover.</p>
 <div class="cell docutils container">
@@ -1562,14 +2088,38 @@ document.write(`
 <span class="p">}</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span> <span class="n">classVis</span><span class="p">,</span> <span class="s1">&#39;ESA Land Cover&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">imgClassified</span><span class="p">,</span> <span class="n">classVis</span><span class="p">,</span> <span class="s1">&#39;Classified&#39;</span><span class="p">)</span>
-<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">trainingSample</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">},</span> <span class="s1">&#39;Training sample&#39;</span><span class="p">)</span>
-<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">validationSample</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">},</span> <span class="s1">&#39;Validation sample&#39;</span><span class="p">)</span>
-<span class="n">m</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Land Cover Type&#39;</span><span class="p">,</span> <span class="n">builtin_legend</span><span class="o">=</span><span class="s1">&#39;ESA_WorldCover&#39;</span><span class="p">)</span>
+<span class="c1">#m.add_layer(trainingSample, {&#39;color&#39;: &#39;black&#39;}, &#39;Training sample&#39;)</span>
+<span class="c1">#m.add_layer(validationSample, {&#39;color&#39;: &#39;white&#39;}, &#39;Validation sample&#39;)</span>
+<span class="c1">#m.add_legend(title=&#39;Land Cover Type&#39;, builtin_legend=&#39;ESA_WorldCover&#39;)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 <span class="n">m</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><script type="application/vnd.jupyter.widget-view+json">{"model_id": "f277f321a6344ce09f04b0dba675bee1", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 </section>
