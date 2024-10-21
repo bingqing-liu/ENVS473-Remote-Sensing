@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab4a - Working with NASA PACE data in HyperCoast &#8212; ENVS473 Remote Sensing of Environment</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/labs/lab4a';</script>
+    <link rel="canonical" href="https://envs473.bingqingliu.com/book/labs/lab4a.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Lab3c - Image Classification" href="lab3c.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="ENVS473 Remote Sensing of Environment - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="ENVS473 Remote Sensing of Environment - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/instructor.html">Instructor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture01.html">Lecture01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture02.html">Lecture02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture03.html">Lecture03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture04.html">Lecture04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture05.html">Lecture05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture06.html">Lecture06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture07.html">Lecture07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture08.html">Lecture08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture09.html">Lecture09</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1a.html">Lab1a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_1.html">Lab1b_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_2.html">Lab1b_2</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lab1c.html">Lab1c</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2a_acolite.html">Lab2a</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2b.html">Lab2b (for fun)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab3a.html">Lab3a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3b.html">Lab3b - Visualization and Analysis of Brazil Floods 2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3c.html">Lab3c - Image Classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab4a - Working with NASA PACE data in HyperCoast</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bingqing-liu/ENVS473-Remote-Sensing/main?urlpath=tree/book/labs/lab4a.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/bingqing-liu/ENVS473-Remote-Sensing/blob/main/book/labs/lab4a.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/edit/main/book/labs/lab4a.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/issues/new?title=Issue%20on%20page%20%2Fbook/labs/lab4a.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/labs/lab4a.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab4a - Working with NASA PACE data in HyperCoast</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-for-pace-data">Search for PACE data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-data-programmatically">Search data programmatically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-data-interactively">Search data interactively</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-pace-data">Read PACE data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-pace-aop-data">Visualize PACE AOP data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-spectral-signatures">Plot spectral signatures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-visualization">Interactive visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-band-visualization">Single-band visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-visualization">Multi-band visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pace-bgc-data">PACE BGC data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-pace-bgc-data">Download PACE BGC data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-pace-bgc-data">Visualize PACE BGC data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab4a-working-with-nasa-pace-data-in-hypercoast">
+<h1>Lab4a - Working with NASA PACE data in HyperCoast<a class="headerlink" href="#lab4a-working-with-nasa-pace-data-in-hypercoast" title="Link to this heading">#</a></h1>
+<p>This notebook demonstrates how to visualize and analyze Plankton, Aerosol, Cloud, ocean Ecosystem (<a class="reference external" href="https://pace.gsfc.nasa.gov/">PACE</a>) data interactively with HyperCoast.</p>
+<section id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
+<p>Uncomment and run the following cell to install the required packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
+<span class="c1"># %pip install -U localtileserver</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import libraries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">earthaccess</span>
+<span class="kn">import</span> <span class="nn">hypercoast</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="search-for-pace-data">
+<h2>Search for PACE data<a class="headerlink" href="#search-for-pace-data" title="Link to this heading">#</a></h2>
+<p>To download and access the data, you will need to create an Earthdata login. You can register for an account at <a class="reference external" href="https://urs.earthdata.nasa.gov">urs.earthdata.nasa.gov</a>. Once you have an account, run the following cell and enter your NASA Earthdata login credentials.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earthaccess</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">persist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="search-data-programmatically">
+<h3>Search data programmatically<a class="headerlink" href="#search-data-programmatically" title="Link to this heading">#</a></h3>
+<p>To search for PACE data programmatically, specify the bounding box and time range of interest. Set <code class="docutils literal notranslate"><span class="pre">count=-1</span></code> to return all results or set <code class="docutils literal notranslate"><span class="pre">count=10</span></code> to return the first 10 results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">,</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">search_pace</span><span class="p">(</span>
+    <span class="n">bounding_box</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">88</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span>
+    <span class="n">temporal</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2024-10-10&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-10-10&quot;</span><span class="p">),</span>
+    <span class="n">short_name</span><span class="o">=</span><span class="s2">&quot;PACE_OCI_L2_AOP_NRT&quot;</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">return_gdf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the footprints of the returned datasets on a map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">explore</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Download the first dataset from the search results. Note that the download may take some time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypercoast</span><span class="o">.</span><span class="n">download_pace</span><span class="p">(</span><span class="n">results</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">out_dir</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="search-data-interactively">
+<h3>Search data interactively<a class="headerlink" href="#search-data-interactively" title="Link to this heading">#</a></h3>
+<p>To search for PACE data interactively, pan and zoom to the area of interest. Specify the time range of interest from the search dialog, then click on the Search button.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mf">30.0262</span><span class="p">,</span> <span class="o">-</span><span class="mf">90.1345</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">search_pace</span><span class="p">(</span><span class="n">default_dataset</span><span class="o">=</span><span class="s2">&quot;PACE_OCI_L2_AOP_NRT&quot;</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">search_pace</span></code> method searches for the <code class="docutils literal notranslate"><span class="pre">PACE_OCI_L2_AOP_NRT</span></code> dataset, but you can specify the dataset name by setting the <code class="docutils literal notranslate"><span class="pre">default_dataset</span></code> parameter, such as <code class="docutils literal notranslate"><span class="pre">PACE_OCI_L2_BGC_NRT</span></code>. For more information about the available datasets, see the <a class="reference external" href="https://pace.oceansciences.org/data_table.htm">PACE Data Products</a> page.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/2c45ad43-c405-402a-92e8-42f497730fbb" /></p>
+<p>Uncomment the following cell to display the GeoDataFrame of the search results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># m._NASA_DATA_GDF.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, you can download the first dataset from the search results by uncommenting the following cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hypercoast.download_pace(results[:1], out_dir=&quot;data&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="read-pace-data">
+<h2>Read PACE data<a class="headerlink" href="#read-pace-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;data/PACE_OCI.20241010T183444.L2.OC_AOP.V2_0.NRT.nc&quot;</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">view_pace_pixel_locations</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load the dataset as a <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">read_pace</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="c1"># dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image" src="https://github.com/user-attachments/assets/56b1fae3-9acf-4ee1-8dc9-7f6784bedf88" /></p>
+</section>
+<section id="visualize-pace-aop-data">
+<h2>Visualize PACE AOP data<a class="headerlink" href="#visualize-pace-aop-data" title="Link to this heading">#</a></h2>
+<p>Visualize selected bands of the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypercoast</span><span class="o">.</span><span class="n">viz_pace</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">510</span><span class="p">,</span> <span class="mi">520</span><span class="p">,</span> <span class="mi">530</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add custom projection and administrative boundaries to the map. The default projection is <code class="docutils literal notranslate"><span class="pre">PlateCarree</span></code>. You can specify a custom projection by setting the <code class="docutils literal notranslate"><span class="pre">crs</span></code> parameter. For more information about the available projections, see the <a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/reference/projections.html">cartopy projection</a> page.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypercoast</span><span class="o">.</span><span class="n">viz_pace</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">510</span><span class="p">,</span> <span class="mi">520</span><span class="p">,</span> <span class="mi">530</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-spectral-signatures">
+<h2>Plot spectral signatures<a class="headerlink" href="#plot-spectral-signatures" title="Link to this heading">#</a></h2>
+<p>Plot the spectral signature of a pixel using the <code class="docutils literal notranslate"><span class="pre">extract_pace</span></code> function. Set <code class="docutils literal notranslate"><span class="pre">return_plot=True</span></code> to return the plot object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">latitude</span> <span class="o">=</span> <span class="mf">29.9307</span>
+<span class="n">longitude</span> <span class="o">=</span> <span class="o">-</span><span class="mf">87.9106</span>
+<span class="n">hypercoast</span><span class="o">.</span><span class="n">extract_pace</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">return_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-visualization">
+<h2>Interactive visualization<a class="headerlink" href="#interactive-visualization" title="Link to this heading">#</a></h2>
+<section id="single-band-visualization">
+<h3>Single-band visualization<a class="headerlink" href="#single-band-visualization" title="Link to this heading">#</a></h3>
+<p>Visualize a selected band of the dataset interactively use the <code class="docutils literal notranslate"><span class="pre">add_pace</span></code> method and speccify the <code class="docutils literal notranslate"><span class="pre">wavelengths</span></code> parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;Hybrid&quot;</span><span class="p">)</span>
+<span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">450</span><span class="p">]</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_pace</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;PACE&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Reflectance&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">set_center</span><span class="p">(</span><span class="o">-</span><span class="mf">80.7382</span><span class="p">,</span> <span class="mf">26.5295</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-band-visualization">
+<h3>Multi-band visualization<a class="headerlink" href="#multi-band-visualization" title="Link to this heading">#</a></h3>
+<p>Select three spectral bands to visualize as an RGB image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;Hybrid&quot;</span><span class="p">)</span>
+<span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">450</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">650</span><span class="p">]</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_pace</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;PACE&quot;</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">set_center</span><span class="p">(</span><span class="o">-</span><span class="mf">80.7382</span><span class="p">,</span> <span class="mf">26.5295</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pace-bgc-data">
+<h2>PACE BGC data<a class="headerlink" href="#pace-bgc-data" title="Link to this heading">#</a></h2>
+<p>PACE has a variety of data products, including biogeochemical properties. For more information about the available datasets, see the <a class="reference external" href="https://pace.oceansciences.org/data_table.htm">PACE Data Products</a> page.</p>
+<p>The PACE Biogeochemical (BGC) data products include chlorophyll-a concentration, particulate organic carbon, and particulate inorganic carbon.</p>
+<section id="download-pace-bgc-data">
+<h3>Download PACE BGC data<a class="headerlink" href="#download-pace-bgc-data" title="Link to this heading">#</a></h3>
+<p>Let’s download a sample PACE BGC dataset for the demonstration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">,</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">search_nasa_data</span><span class="p">(</span>
+    <span class="n">short_name</span><span class="o">=</span><span class="s2">&quot;PACE_OCI_L2_BGC_NRT&quot;</span><span class="p">,</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">90.5642</span><span class="p">,</span> <span class="mf">29.9749</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.7143</span><span class="p">,</span> <span class="mf">30.42</span><span class="p">),</span>
+    <span class="n">temporal</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2024-10-10&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-10-10&quot;</span><span class="p">),</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">return_gdf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">hypercoast</span><span class="o">.</span><span class="n">download_nasa_data</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load the downloaded dataset as an <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;data/PACE_OCI.20241010T183444.L2.OC_BGC.V2_0.NRT.nc&quot;</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">read_pace_bgc</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s inspect the data variables contained in the dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the dataset contains the following variables:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.earthdata.nasa.gov/apt/documents/chlor-a/v1.0">Chlorophyll Concentration</a></p></li>
+<li><p><a class="reference external" href="https://oceancolor.gsfc.nasa.gov/resources/atbd/cphyt/">Phytoplankton Carbon</a></p></li>
+<li><p><a class="reference external" href="https://oceancolor.gsfc.nasa.gov/resources/atbd/poc/">Particulate Organic Carbon</a></p></li>
+</ul>
+</section>
+<section id="visualize-pace-bgc-data">
+<h3>Visualize PACE BGC data<a class="headerlink" href="#visualize-pace-bgc-data" title="Link to this heading">#</a></h3>
+<p>Since the datasets are not gridded, we need to transform them into gridded data to visualize them. We can use the <code class="docutils literal notranslate"><span class="pre">grid_pace_bgc</span></code> function to transform the dataset into a gridded format.</p>
+<p>First, transform the <code class="docutils literal notranslate"><span class="pre">chlor_a</span></code> variable into a gridded format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chlor_a</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">grid_pace_bgc</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;chlor_a&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the gridded Chlorophyll Concentration data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chlor_a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the gridded Phytoplankton Carbon data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">carbon_phyto</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">grid_pace_bgc</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;carbon_phyto&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span>
+<span class="p">)</span>
+<span class="n">carbon_phyto</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the gridded Particulate Organic Carbon data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poc</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">grid_pace_bgc</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;poc&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="n">poc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the gridded BGC data on an interactive map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;Hybrid&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span><span class="n">chlor_a</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Chlorophyll-a&quot;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span>
+    <span class="n">carbon_phyto</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Phytoplankton Carbon&quot;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;plasma&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span>
+    <span class="n">poc</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Particulate Organic Carbon&quot;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1000</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer_manager</span><span class="p">()</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Chlorophyll-a (mg/m3)&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;plasma&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Phytoplankton Carbon (mg/m3)&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_colormap</span><span class="p">(</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Particulate Organic Carbon (mg/m3)&quot;</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">set_center</span><span class="p">(</span><span class="o">-</span><span class="mf">80.7382</span><span class="p">,</span> <span class="mf">26.5295</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="https://i.imgur.com/AEccc5k.gif" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "bingqing-liu/ENVS473-Remote-Sensing",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/labs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab3c.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab3c - Image Classification</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-for-pace-data">Search for PACE data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-data-programmatically">Search data programmatically</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-data-interactively">Search data interactively</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-pace-data">Read PACE data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-pace-aop-data">Visualize PACE AOP data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-spectral-signatures">Plot spectral signatures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-visualization">Interactive visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-band-visualization">Single-band visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-visualization">Multi-band visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pace-bgc-data">PACE BGC data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-pace-bgc-data">Download PACE BGC data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-pace-bgc-data">Visualize PACE BGC data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bingqing Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
