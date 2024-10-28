@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Lab3c - Image Classification" href="lab3c.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="../../_static/logo.png" class="logo__image only-light" alt="ENVS473 Remote Sensing of Environment - Home"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="ENVS473 Remote Sensing of Environment - Home"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ENVS473 Remote Sensing of Environment - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
@@ -454,24 +443,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -533,8 +514,242 @@ document.write(`
 <p>Uncomment and run the following cell to install the required packages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install &quot;hypercoast[extra]&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install &quot;hypercoast[extra]&quot;
 <span class="c1"># %pip install -U localtileserver</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: hypercoast[extra] in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (0.8.0)
+Requirement already satisfied: dask in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (2024.9.0)
+Requirement already satisfied: earthaccess in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.10.0)
+Requirement already satisfied: geopandas in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.0.1)
+Requirement already satisfied: h5netcdf in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.3.0)
+Requirement already satisfied: hvplot in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.10.0)
+Requirement already satisfied: leafmap&gt;=0.37.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.37.3)
+Requirement already satisfied: localtileserver in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.10.3)
+Requirement already satisfied: mapclassify in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (2.8.0)
+Requirement already satisfied: netcdf4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.7.1)
+Requirement already satisfied: numpy&lt;2.0.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.26.4)
+Requirement already satisfied: rioxarray in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.17.0)
+Requirement already satisfied: s3fs in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (2024.9.0)
+Requirement already satisfied: scikit-learn in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.5.2)
+Requirement already satisfied: scipy in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.14.1)
+Requirement already satisfied: xarray in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (2024.9.0)
+Requirement already satisfied: cartopy in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.23.0)
+Requirement already satisfied: fiona in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (1.9.4)
+Requirement already satisfied: openpyxl in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (3.1.5)
+Requirement already satisfied: pyvista[jupyter] in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hypercoast[extra]) (0.44.1)
+Requirement already satisfied: anywidget&gt;=0.9.13 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.9.13)
+Requirement already satisfied: bqplot&gt;=0.12.43 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.12.43)
+Requirement already satisfied: colour&gt;=0.1.5 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.1.5)
+Requirement already satisfied: duckdb&gt;=0.10.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.0.0)
+Requirement already satisfied: folium&gt;=0.14.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.17.0)
+Requirement already satisfied: gdown&gt;=5.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (5.2.0)
+Requirement already satisfied: geojson&gt;=3.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.1.0)
+Requirement already satisfied: ipyevents&gt;=2.0.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.0.2)
+Requirement already satisfied: ipyfilechooser&gt;=0.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.6.0)
+Requirement already satisfied: ipyleaflet&gt;=0.18.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.19.2)
+Requirement already satisfied: ipyvuetify&gt;=1.9.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.10.0)
+Requirement already satisfied: ipywidgets&gt;=7.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (8.1.5)
+Requirement already satisfied: matplotlib&gt;=3.7.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.9.2)
+Requirement already satisfied: pandas&gt;=2.0.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.2.2)
+Requirement already satisfied: plotly&gt;=5.15.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (5.24.1)
+Requirement already satisfied: pyshp&gt;=2.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.3.1)
+Requirement already satisfied: pystac-client&gt;=0.8.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.8.3)
+Requirement already satisfied: python-box&gt;=7.2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (7.2.0)
+Requirement already satisfied: scooby&gt;=0.10.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.10.0)
+Requirement already satisfied: whiteboxgui&gt;=2.3.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.3.0)
+Requirement already satisfied: xyzservices&gt;=2024.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2024.9.0)
+Requirement already satisfied: shapely&gt;=1.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from cartopy-&gt;hypercoast[extra]) (2.0.2)
+Requirement already satisfied: packaging&gt;=20 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from cartopy-&gt;hypercoast[extra]) (24.1)
+Requirement already satisfied: pyproj&gt;=3.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from cartopy-&gt;hypercoast[extra]) (3.6.1)
+Requirement already satisfied: click&gt;=8.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (8.1.7)
+Requirement already satisfied: cloudpickle&gt;=3.0.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (3.0.0)
+Requirement already satisfied: fsspec&gt;=2021.09.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (2024.9.0)
+Requirement already satisfied: partd&gt;=1.4.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (1.4.2)
+Requirement already satisfied: pyyaml&gt;=5.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (6.0.2)
+Requirement already satisfied: toolz&gt;=0.10.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (0.12.1)
+Requirement already satisfied: importlib-metadata&gt;=4.13.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from dask-&gt;hypercoast[extra]) (8.5.0)
+Requirement already satisfied: importlib-resources&gt;=6.3.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (6.4.5)
+Requirement already satisfied: multimethod&gt;=1.8 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (1.12)
+Requirement already satisfied: pqdm&gt;=0.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (0.2.0)
+Requirement already satisfied: python-cmr&gt;=0.10.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (0.13.0)
+Requirement already satisfied: requests&gt;=2.26 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (2.32.3)
+Requirement already satisfied: tinynetrc&lt;2.0.0,&gt;=1.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (1.3.1)
+Requirement already satisfied: typing_extensions&gt;=4.10.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from earthaccess-&gt;hypercoast[extra]) (4.12.2)
+Requirement already satisfied: aiobotocore&lt;3.0.0,&gt;=2.5.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from s3fs-&gt;hypercoast[extra]) (2.15.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from s3fs-&gt;hypercoast[extra]) (3.10.5)
+Requirement already satisfied: attrs&gt;=19.2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from fiona-&gt;hypercoast[extra]) (24.2.0)
+Requirement already satisfied: certifi in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from fiona-&gt;hypercoast[extra]) (2024.8.30)
+Requirement already satisfied: click-plugins&gt;=1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from fiona-&gt;hypercoast[extra]) (1.1.1)
+Requirement already satisfied: cligj&gt;=0.5 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from fiona-&gt;hypercoast[extra]) (0.7.2)
+Requirement already satisfied: six in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from fiona-&gt;hypercoast[extra]) (1.16.0)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from geopandas-&gt;hypercoast[extra]) (0.7.2)
+Requirement already satisfied: h5py in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from h5netcdf-&gt;hypercoast[extra]) (3.11.0)
+Requirement already satisfied: bokeh&gt;=1.0.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hvplot-&gt;hypercoast[extra]) (3.4.2)
+Requirement already satisfied: colorcet&gt;=2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hvplot-&gt;hypercoast[extra]) (3.1.0)
+Requirement already satisfied: holoviews&gt;=1.11.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hvplot-&gt;hypercoast[extra]) (1.19.1)
+Requirement already satisfied: panel&gt;=0.11.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hvplot-&gt;hypercoast[extra]) (1.4.5)
+Requirement already satisfied: param&lt;3.0,&gt;=1.12.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from hvplot-&gt;hypercoast[extra]) (2.1.1)
+Requirement already satisfied: flask&lt;4,&gt;=2.0.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (2.3.3)
+Requirement already satisfied: Flask-Caching in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (2.1.0)
+Requirement already satisfied: flask-cors in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (5.0.0)
+Requirement already satisfied: flask-restx&gt;=0.5.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (1.1.0)
+Requirement already satisfied: rio-tiler in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (6.7.0)
+Requirement already satisfied: rio-cogeo in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (5.3.4)
+Requirement already satisfied: server-thread in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (0.2.0)
+Requirement already satisfied: werkzeug in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from localtileserver-&gt;hypercoast[extra]) (3.0.4)
+Requirement already satisfied: networkx&gt;=2.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from mapclassify-&gt;hypercoast[extra]) (3.3)
+Requirement already satisfied: joblib&gt;=1.2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from scikit-learn-&gt;hypercoast[extra]) (1.4.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from scikit-learn-&gt;hypercoast[extra]) (3.5.0)
+Requirement already satisfied: cftime in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from netcdf4-&gt;hypercoast[extra]) (1.6.4)
+Requirement already satisfied: et-xmlfile in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from openpyxl-&gt;hypercoast[extra]) (1.1.0)
+Requirement already satisfied: pillow in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (10.4.0)
+Requirement already satisfied: pooch in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.8.2)
+Requirement already satisfied: vtk in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (9.3.1)
+Requirement already satisfied: jupyter-server-proxy in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (4.4.0)
+Requirement already satisfied: nest-asyncio in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.6.0)
+Requirement already satisfied: trame&gt;=2.5.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.6.5)
+Requirement already satisfied: trame-client&gt;=2.12.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.2.5)
+Requirement already satisfied: trame-server&gt;=2.11.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.2.0)
+Requirement already satisfied: trame-vtk&gt;=2.5.8 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.8.10)
+Requirement already satisfied: trame-vuetify&gt;=2.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.7.1)
+Requirement already satisfied: rasterio&gt;=1.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rioxarray-&gt;hypercoast[extra]) (1.3.9)
+Requirement already satisfied: botocore&lt;1.35.17,&gt;=1.35.16 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiobotocore&lt;3.0.0,&gt;=2.5.4-&gt;s3fs-&gt;hypercoast[extra]) (1.35.16)
+Requirement already satisfied: wrapt&lt;2.0.0,&gt;=1.10.10 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiobotocore&lt;3.0.0,&gt;=2.5.4-&gt;s3fs-&gt;hypercoast[extra]) (1.16.0)
+Requirement already satisfied: aioitertools&lt;1.0.0,&gt;=0.5.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiobotocore&lt;3.0.0,&gt;=2.5.4-&gt;s3fs-&gt;hypercoast[extra]) (0.11.0)
+Requirement already satisfied: aiohappyeyeballs&gt;=2.3.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (2.4.0)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (1.3.1)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (1.4.1)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (6.1.0)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (1.9.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;s3fs-&gt;hypercoast[extra]) (4.0.3)
+Requirement already satisfied: psygnal&gt;=0.8.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from anywidget&gt;=0.9.13-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.11.1)
+Requirement already satisfied: Jinja2&gt;=2.9 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;hypercoast[extra]) (3.1.4)
+Requirement already satisfied: contourpy&gt;=1.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;hypercoast[extra]) (1.3.0)
+Requirement already satisfied: tornado&gt;=6.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bokeh&gt;=1.0.0-&gt;hvplot-&gt;hypercoast[extra]) (6.4.1)
+Requirement already satisfied: traitlets&gt;=4.3.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bqplot&gt;=0.12.43-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (5.14.3)
+Requirement already satisfied: traittypes&gt;=0.0.6 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bqplot&gt;=0.12.43-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.2.1)
+Requirement already satisfied: colorama in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from click&gt;=8.1-&gt;dask-&gt;hypercoast[extra]) (0.4.6)
+Requirement already satisfied: itsdangerous&gt;=2.1.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from flask&lt;4,&gt;=2.0.0-&gt;localtileserver-&gt;hypercoast[extra]) (2.2.0)
+Requirement already satisfied: blinker&gt;=1.6.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from flask&lt;4,&gt;=2.0.0-&gt;localtileserver-&gt;hypercoast[extra]) (1.8.2)
+Requirement already satisfied: aniso8601&gt;=0.82 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (9.0.1)
+Requirement already satisfied: jsonschema in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (4.23.0)
+Requirement already satisfied: pytz in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (2024.2)
+Requirement already satisfied: branca&gt;=0.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from folium&gt;=0.14.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.7.2)
+Requirement already satisfied: beautifulsoup4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from gdown&gt;=5.1.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (4.12.3)
+Requirement already satisfied: filelock in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from gdown&gt;=5.1.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.16.0)
+Requirement already satisfied: tqdm in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from gdown&gt;=5.1.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (4.66.5)
+Requirement already satisfied: pyviz-comms&gt;=2.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from holoviews&gt;=1.11.0-&gt;hvplot-&gt;hypercoast[extra]) (3.0.3)
+Requirement already satisfied: zipp&gt;=3.20 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from importlib-metadata&gt;=4.13.0-&gt;dask-&gt;hypercoast[extra]) (3.20.2)
+Requirement already satisfied: jupyter-leaflet&lt;0.20,&gt;=0.19 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipyleaflet&gt;=0.18.2-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.19.2)
+Requirement already satisfied: ipyvue&lt;2,&gt;=1.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipyvuetify&gt;=1.9.4-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.11.0)
+Requirement already satisfied: comm&gt;=0.1.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.2.2)
+Requirement already satisfied: ipython&gt;=6.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (8.27.0)
+Requirement already satisfied: widgetsnbextension~=4.0.12 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (4.0.13)
+Requirement already satisfied: jupyterlab-widgets~=3.0.12 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.0.13)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from matplotlib&gt;=3.7.1-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from matplotlib&gt;=3.7.1-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (4.53.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from matplotlib&gt;=3.7.1-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.4.7)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from matplotlib&gt;=3.7.1-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.1.4)
+Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from matplotlib&gt;=3.7.1-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.9.0)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pandas&gt;=2.0.3-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2024.1)
+Requirement already satisfied: markdown in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (3.6)
+Requirement already satisfied: markdown-it-py in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (3.0.0)
+Requirement already satisfied: linkify-it-py in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (2.0.3)
+Requirement already satisfied: mdit-py-plugins in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (0.4.2)
+Requirement already satisfied: bleach in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (6.1.0)
+Requirement already satisfied: locket in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from partd&gt;=1.4.0-&gt;dask-&gt;hypercoast[extra]) (1.0.0)
+Requirement already satisfied: tenacity&gt;=6.2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from plotly&gt;=5.15.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (9.0.0)
+Requirement already satisfied: bounded-pool-executor in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pqdm&gt;=0.1-&gt;earthaccess-&gt;hypercoast[extra]) (0.0.3)
+Requirement already satisfied: pystac&gt;=1.10.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pystac[validation]&gt;=1.10.0-&gt;pystac-client&gt;=0.8.2-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.10.1)
+Requirement already satisfied: affine in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rasterio&gt;=1.3-&gt;rioxarray-&gt;hypercoast[extra]) (2.4.0)
+Requirement already satisfied: snuggs&gt;=1.4.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rasterio&gt;=1.3-&gt;rioxarray-&gt;hypercoast[extra]) (1.4.7)
+Requirement already satisfied: setuptools in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rasterio&gt;=1.3-&gt;rioxarray-&gt;hypercoast[extra]) (73.0.1)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from requests&gt;=2.26-&gt;earthaccess-&gt;hypercoast[extra]) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from requests&gt;=2.26-&gt;earthaccess-&gt;hypercoast[extra]) (3.9)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from requests&gt;=2.26-&gt;earthaccess-&gt;hypercoast[extra]) (2.2.2)
+Requirement already satisfied: wslink&gt;=2.1.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from trame&gt;=2.5.2-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.2.1)
+Requirement already satisfied: more-itertools in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from trame-server&gt;=2.11.7-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (10.5.0)
+Requirement already satisfied: MarkupSafe&gt;=2.1.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from werkzeug-&gt;localtileserver-&gt;hypercoast[extra]) (2.1.5)
+Requirement already satisfied: ipytree in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from whiteboxgui&gt;=2.3.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.2.2)
+Requirement already satisfied: whitebox in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from whiteboxgui&gt;=2.3.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.3.5)
+Requirement already satisfied: cachelib&lt;0.10.0,&gt;=0.9.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from Flask-Caching-&gt;localtileserver-&gt;hypercoast[extra]) (0.9.0)
+Requirement already satisfied: jupyter-server&gt;=1.24.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.14.2)
+Requirement already satisfied: simpervisor&gt;=1.0.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.0.0)
+Requirement already satisfied: platformdirs&gt;=2.5.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pooch-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.11.0)
+Requirement already satisfied: morecantile&lt;6.0,&gt;=5.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-cogeo-&gt;localtileserver-&gt;hypercoast[extra]) (5.4.2)
+Requirement already satisfied: pydantic~=2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-cogeo-&gt;localtileserver-&gt;hypercoast[extra]) (2.9.1)
+Requirement already satisfied: cachetools in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (5.5.0)
+Requirement already satisfied: color-operations in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (0.1.5)
+Requirement already satisfied: httpx in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (0.27.2)
+Requirement already satisfied: numexpr in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (2.7.3)
+Requirement already satisfied: uvicorn in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from server-thread-&gt;localtileserver-&gt;hypercoast[extra]) (0.30.6)
+Requirement already satisfied: jmespath&lt;2.0.0,&gt;=0.7.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from botocore&lt;1.35.17,&gt;=1.35.16-&gt;aiobotocore&lt;3.0.0,&gt;=2.5.4-&gt;s3fs-&gt;hypercoast[extra]) (1.0.1)
+Requirement already satisfied: decorator in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (5.1.1)
+Requirement already satisfied: jedi&gt;=0.16 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.19.1)
+Requirement already satisfied: matplotlib-inline in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.1.7)
+Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (3.0.47)
+Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.18.0)
+Requirement already satisfied: stack-data in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.6.2)
+Requirement already satisfied: exceptiongroup in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.2.2)
+Requirement already satisfied: anyio&gt;=3.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (4.4.0)
+Requirement already satisfied: argon2-cffi&gt;=21.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (23.1.0)
+Requirement already satisfied: jupyter-client&gt;=7.4.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (8.6.2)
+Requirement already satisfied: jupyter-core!=5.0.*,&gt;=4.12 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (5.7.2)
+Requirement already satisfied: jupyter-events&gt;=0.9.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.10.0)
+Requirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.5.3)
+Requirement already satisfied: nbconvert&gt;=6.4.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (7.16.4)
+Requirement already satisfied: nbformat&gt;=5.3.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (5.10.4)
+Requirement already satisfied: overrides&gt;=5.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (7.7.0)
+Requirement already satisfied: prometheus-client&gt;=0.9 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.20.0)
+Requirement already satisfied: pywinpty&gt;=2.0.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.0.13)
+Requirement already satisfied: pyzmq&gt;=24 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (26.2.0)
+Requirement already satisfied: send2trash&gt;=1.8.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.8.3)
+Requirement already satisfied: terminado&gt;=0.8.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.18.1)
+Requirement already satisfied: websocket-client&gt;=1.7 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.8.0)
+Requirement already satisfied: annotated-types&gt;=0.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pydantic~=2.0-&gt;rio-cogeo-&gt;localtileserver-&gt;hypercoast[extra]) (0.7.0)
+Requirement already satisfied: pydantic-core==2.23.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from pydantic~=2.0-&gt;rio-cogeo-&gt;localtileserver-&gt;hypercoast[extra]) (2.23.3)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema-&gt;flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (2023.12.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema-&gt;flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (0.35.1)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema-&gt;flask-restx&gt;=0.5.0-&gt;localtileserver-&gt;hypercoast[extra]) (0.20.0)
+Requirement already satisfied: msgpack&lt;2,&gt;=1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from wslink&gt;=2.1.3-&gt;trame&gt;=2.5.2-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.1.0)
+Requirement already satisfied: soupsieve&gt;1.2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from beautifulsoup4-&gt;gdown&gt;=5.1.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.5)
+Requirement already satisfied: webencodings in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from bleach-&gt;panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (0.5.1)
+Requirement already satisfied: httpcore==1.* in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from httpx-&gt;rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (1.0.5)
+Requirement already satisfied: sniffio in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from httpx-&gt;rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (1.3.1)
+Requirement already satisfied: h11&lt;0.15,&gt;=0.13 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from httpcore==1.*-&gt;httpx-&gt;rio-tiler-&gt;localtileserver-&gt;hypercoast[extra]) (0.14.0)
+Requirement already satisfied: uc-micro-py in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from linkify-it-py-&gt;panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (1.0.3)
+Requirement already satisfied: mdurl~=0.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from markdown-it-py-&gt;panel&gt;=0.11.0-&gt;hvplot-&gt;hypercoast[extra]) (0.1.2)
+Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from requests[socks]-&gt;gdown&gt;=5.1.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (1.7.1)
+Requirement already satisfied: argon2-cffi-bindings in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (21.2.0)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.8.4)
+Requirement already satisfied: pywin32&gt;=300 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-core!=5.0.*,&gt;=4.12-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (306)
+Requirement already satisfied: python-json-logger&gt;=2.0.4 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.0.7)
+Requirement already satisfied: rfc3339-validator in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.1.4)
+Requirement already satisfied: rfc3986-validator&gt;=0.1.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.1.1)
+Requirement already satisfied: defusedxml in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.3.0)
+Requirement already satisfied: mistune&lt;4,&gt;=2.0.3 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.0.2)
+Requirement already satisfied: nbclient&gt;=0.5.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (0.10.0)
+Requirement already satisfied: pandocfilters&gt;=1.4.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.5.0)
+Requirement already satisfied: tinycss2 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.3.0)
+Requirement already satisfied: fastjsonschema&gt;=2.15 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from nbformat&gt;=5.3.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.20.0)
+Requirement already satisfied: wcwidth in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.2.13)
+Requirement already satisfied: executing&gt;=1.2.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.1.0)
+Requirement already satisfied: asttokens&gt;=2.1.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (2.4.1)
+Requirement already satisfied: pure-eval in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets&gt;=7.6.0-&gt;leafmap&gt;=0.37.1-&gt;hypercoast[extra]) (0.2.3)
+Requirement already satisfied: fqdn in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.5.1)
+Requirement already satisfied: isoduration in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (20.11.0)
+Requirement already satisfied: jsonpointer&gt;1.13 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (3.0.0)
+Requirement already satisfied: uri-template in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.3.0)
+Requirement already satisfied: webcolors&gt;=24.6.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (24.8.0)
+Requirement already satisfied: cffi&gt;=1.0.1 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.17.1)
+Requirement already satisfied: pycparser in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.22)
+Requirement already satisfied: arrow&gt;=0.15.0 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (1.3.0)
+Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in c:\users\c00553090\appdata\local\miniconda3\envs\hypercoast\lib\site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.9.0-&gt;jupyter-server&gt;=1.24.0-&gt;jupyter-server-proxy-&gt;pyvista[jupyter]; extra == &quot;extra&quot;-&gt;hypercoast[extra]) (2.9.0.20240906)
+Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -545,6 +760,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">earthaccess</span>
 <span class="kn">import</span> <span class="nn">hypercoast</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\C00553090\AppData\Local\miniconda3\envs\hypercoast\lib\site-packages\pandas\core\computation\expressions.py:21: UserWarning: Pandas requires version &#39;2.8.4&#39; or newer of &#39;numexpr&#39; (version &#39;2.7.3&#39; currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
 </pre></div>
 </div>
 </div>
@@ -629,10 +850,13 @@ document.write(`
 <h2>Read PACE data<a class="headerlink" href="#read-pace-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;data/PACE_OCI.20241010T183444.L2.OC_AOP.V2_0.NRT.nc&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;PACE_OCI.20240730T181157.L2.OC_AOP.V2_0.NRT.nc&quot;</span>
 <span class="n">plot</span> <span class="o">=</span> <span class="n">hypercoast</span><span class="o">.</span><span class="n">view_pace_pixel_locations</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fca3e32ed1302541a93d4dfa742138655c5ddcaf0e0d77b311f00a9d88ec046c.png" src="../../_images/fca3e32ed1302541a93d4dfa742138655c5ddcaf0e0d77b311f00a9d88ec046c.png" />
 </div>
 </div>
 <p>Load the dataset as a <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> object.</p>
@@ -644,7 +868,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="image" src="https://github.com/user-attachments/assets/56b1fae3-9acf-4ee1-8dc9-7f6784bedf88" /></p>
 </section>
 <section id="visualize-pace-aop-data">
 <h2>Visualize PACE AOP data<a class="headerlink" href="#visualize-pace-aop-data" title="Link to this heading">#</a></h2>
@@ -887,7 +1110,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -963,8 +1187,8 @@ By Bingqing Liu
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
