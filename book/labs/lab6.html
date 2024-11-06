@@ -1,0 +1,2940 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; ENVS473 Remote Sensing of Environment</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/labs/lab6';</script>
+    <link rel="canonical" href="https://envs473.bingqingliu.com/book/labs/lab6.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Lab4b - Working with NASA EMIT data in HyperCoast" href="lab4b.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="ENVS473 Remote Sensing of Environment - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ENVS473 Remote Sensing of Environment - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/instructor.html">Instructor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/schedule.html">Schedule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture01.html">Lecture01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture02.html">Lecture02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture03.html">Lecture03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture04.html">Lecture04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture05.html">Lecture05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture06.html">Lecture06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture07.html">Lecture07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture08.html">Lecture08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture09.html">Lecture09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture11.html">Lecture11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture12.html">Lecture12</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1a.html">Lab1a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_1.html">Lab1b_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1b_2.html">Lab1b_2</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lab1c.html">Lab1c</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2a_acolite.html">Lab2a</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab2b.html">Lab2b (for fun)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lab3a.html">Lab3a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3b.html">Lab3b - Visualization and Analysis of Brazil Floods 2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3c.html">Lab3c - Image Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4a.html">Lab4a - Working with NASA PACE data in HyperCoast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4b.html">Lab4b - Working with NASA EMIT data in HyperCoast</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/bingqing-liu/ENVS473-Remote-Sensing/main?urlpath=tree/book/labs/lab6.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/bingqing-liu/ENVS473-Remote-Sensing/blob/main/book/labs/lab6.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/edit/main/book/labs/lab6.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bingqing-liu/ENVS473-Remote-Sensing/issues/new?title=Issue%20on%20page%20%2Fbook/labs/lab6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/labs/lab6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><a class="reference external" href="https://colab.research.google.com/github/giswqs/notebook-share/blob/master/docs/pakistan_floods.ipynb"><img alt="Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
+<a class="reference external" href="https://studiolab.sagemaker.aws/import/github/giswqs/notebook-share/blob/master/docs/pakistan_floods.ipynb"><img alt="Open in SageMaker Studio Lab" src="https://studiolab.sagemaker.aws/studiolab.svg" /></a>
+<a class="reference external" href="https://pccompute.westeurope.cloudapp.azure.com/compute/hub/user-redirect/git-pull?repo=https://github.com/giswqs/notebook-share&amp;amp;urlpath=lab/tree/notebook-share/docs/pakistan_floods.ipynb&amp;amp;branch=master"><img alt="Open in Planetary Computer" src="https://img.shields.io/badge/Open-Planetary%20Computer-black?style=flat&amp;logo=microsoft" /></a>
+<a class="reference external" href="https://mybinder.org/v2/gh/giswqs/notebook-share/HEAD?labpath=docs%25pakistan_floods.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>#lab6 - SAR Application for Pakistan Floods 2022 Using Earth Engine and Geemap</p>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>From 14 June to October 2022, floods in Pakistan killed 1,739 people, and caused 3.2 trillion Pakistani Rupees (14.9 billion US Dollars) of damage and 3.3 trillion Pakistani Rupees (15.2 billion US Dollars) of economic losses. The flooding was the world’s deadliest flood since the 2020 South Asian floods and described as the worst in the country’s history. On 25 August 2022, Pakistan declared a state of emergency because of the flooding. See the <a class="reference external" href="https://en.wikipedia.org/wiki/2022_Pakistan_floods">Wikipedia</a> page for more information about the 2022 Pakistan floods.</p>
+</section>
+<section id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h1>
+<p>To follow this tutorial, you must first <a class="reference external" href="https://earthengine.google.com/signup">sign up</a> for a <a class="reference external" href="https://earthengine.google.com/">Google Earth Engine</a> account. Earth Engine is a cloud computing platform with a <a class="reference external" href="https://developers.google.com/earth-engine/datasets/">multi-petabyte catalog</a> of satellite imagery and geospatial datasets. It is free for noncommercial use. To authenticate the Earth Engine Python API, see instructions <a class="reference external" href="https://book.geemap.org/chapters/01_introduction.html#earth-engine-authentication">here</a>.</p>
+<p>In this tutorial, we will use the <a class="reference external" href="https://geemap.org">geemap</a> Python package to visualize and analyze the Pakistan floods. Geemap enables users to analyze and visualize Earth Engine datasets interactively within a Jupyter-based environment with minimal coding. To learn more about geemap, check out <a class="reference external" href="https://geemap.org">https://geemap.org</a>.</p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+<p>Uncomment the following line to install geemap if needed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install geemap</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-libraries">
+<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h1>
+<p>Import the earthengine-api and geemap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ee</span>
+<span class="kn">import</span> <span class="nn">geemap.foliumap</span> <span class="k">as</span> <span class="nn">geemap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\C00553090\AppData\Local\miniconda3\envs\hypercoast\lib\site-packages\pandas\core\computation\expressions.py:21: UserWarning: Pandas requires version &#39;2.8.4&#39; or newer of &#39;numexpr&#39; (version &#39;2.7.3&#39; currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-an-interactive-map">
+<h1>Create an interactive map<a class="headerlink" href="#create-an-interactive-map" title="Link to this heading">#</a></h1>
+<p>Specify the center point <code class="docutils literal notranslate"><span class="pre">[lat,</span> <span class="pre">lon]</span></code> and zoom level of the map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mf">29.3055</span><span class="p">,</span> <span class="mf">68.9062</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_1a8c8cdebb5e098e3499ec0e15891702 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_1a8c8cdebb5e098e3499ec0e15891702&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_1a8c8cdebb5e098e3499ec0e15891702 = L.map(
+                &quot;map_1a8c8cdebb5e098e3499ec0e15891702&quot;,
+                {
+                    center: [29.3055, 68.9062],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a0183de87300e8ed2543e76177a13844 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_a0183de87300e8ed2543e76177a13844.addTo(map_1a8c8cdebb5e098e3499ec0e15891702);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_1a8c8cdebb5e098e3499ec0e15891702);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_b59290f1b45ff7a140b56c3d2b4bdb0d = new L.featureGroup().addTo(
+                map_1a8c8cdebb5e098e3499ec0e15891702
+            );
+            options.edit.featureGroup = drawnItems_draw_control_b59290f1b45ff7a140b56c3d2b4bdb0d;
+            var draw_control_b59290f1b45ff7a140b56c3d2b4bdb0d = new L.Control.Draw(
+                options
+            ).addTo( map_1a8c8cdebb5e098e3499ec0e15891702 );
+            map_1a8c8cdebb5e098e3499ec0e15891702.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_b59290f1b45ff7a140b56c3d2b4bdb0d.addLayer(layer);
+             });
+            map_1a8c8cdebb5e098e3499ec0e15891702.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_b59290f1b45ff7a140b56c3d2b4bdb0d.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64 = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_76634264d9ddc3ea84f5f1da796efa64 = geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_76634264d9ddc3ea84f5f1da796efa64 = L.Control.Geocoder[ geocoderName_geocoder_76634264d9ddc3ea84f5f1da796efa64 ](
+                geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64[&quot;geocoder&quot;] = customGeocoder_geocoder_76634264d9ddc3ea84f5f1da796efa64;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_76634264d9ddc3ea84f5f1da796efa64[&#x27;zoom&#x27;] || map_1a8c8cdebb5e098e3499ec0e15891702.getZoom();
+                map_1a8c8cdebb5e098e3499ec0e15891702.setView(e.geocode.center, zoom);
+            }).addTo(map_1a8c8cdebb5e098e3499ec0e15891702);
+
+        
+    
+            map_1a8c8cdebb5e098e3499ec0e15891702.fitBounds(
+                [[29.3055, 68.9062], [29.3055, 68.9062]],
+                {&quot;maxZoom&quot;: 6}
+            );
+        
+    
+            var layer_control_d36383a9169fe30aa6444f87bea6a7b2_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_a0183de87300e8ed2543e76177a13844,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_d36383a9169fe30aa6444f87bea6a7b2 = L.control.layers(
+                layer_control_d36383a9169fe30aa6444f87bea6a7b2_layers.base_layers,
+                layer_control_d36383a9169fe30aa6444f87bea6a7b2_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_1a8c8cdebb5e098e3499ec0e15891702);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+<p>In the tutorial, we will focus on Pakistan, but the code can be easily modified to visualize and analyze floods in other countries. Modify the <code class="docutils literal notranslate"><span class="pre">country_name</span></code> variable to specify the country of interest and set the date range for the flood event. In order to extract the flood extent, we also need to specify the date range for the pre-flood period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_name</span> <span class="o">=</span> <span class="s2">&quot;Pakistan&quot;</span>
+<span class="n">pre_flood_start_date</span> <span class="o">=</span> <span class="s2">&quot;2021-08-01&quot;</span>
+<span class="n">pre_flood_end_date</span> <span class="o">=</span> <span class="s2">&quot;2021-09-30&quot;</span>
+<span class="n">flood_start_date</span> <span class="o">=</span> <span class="s2">&quot;2022-08-01&quot;</span>
+<span class="n">flood_end_date</span> <span class="o">=</span> <span class="s2">&quot;2022-09-30&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+</section>
+<section id="visualize-datasets">
+<h1>Visualize datasets<a class="headerlink" href="#visualize-datasets" title="Link to this heading">#</a></h1>
+<p>Specify the country of interest and filter the dataset by the country name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+
+<span class="n">country</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;USDOS/LSIB_SIMPLE/2017&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;country_na&quot;</span><span class="p">,</span> <span class="n">country_name</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;fillColor&quot;</span><span class="p">:</span> <span class="s2">&quot;00000000&quot;</span><span class="p">}</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="o">**</span><span class="n">style</span><span class="p">),</span> <span class="p">{},</span> <span class="n">country_name</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_57979b24024451cbc866b18803c0a607 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_57979b24024451cbc866b18803c0a607&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_57979b24024451cbc866b18803c0a607 = L.map(
+                &quot;map_57979b24024451cbc866b18803c0a607&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_df89d64327424b653b1c5453bbc06a8e = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_df89d64327424b653b1c5453bbc06a8e.addTo(map_57979b24024451cbc866b18803c0a607);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_57979b24024451cbc866b18803c0a607);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_3850d465d8485a989a2f9ffaf37e817b = new L.featureGroup().addTo(
+                map_57979b24024451cbc866b18803c0a607
+            );
+            options.edit.featureGroup = drawnItems_draw_control_3850d465d8485a989a2f9ffaf37e817b;
+            var draw_control_3850d465d8485a989a2f9ffaf37e817b = new L.Control.Draw(
+                options
+            ).addTo( map_57979b24024451cbc866b18803c0a607 );
+            map_57979b24024451cbc866b18803c0a607.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_3850d465d8485a989a2f9ffaf37e817b.addLayer(layer);
+             });
+            map_57979b24024451cbc866b18803c0a607.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_3850d465d8485a989a2f9ffaf37e817b.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13 = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13 = geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13 = L.Control.Geocoder[ geocoderName_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13 ](
+                geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13[&quot;geocoder&quot;] = customGeocoder_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_4496e9a9743f961d6d8ed3be6ae3ef13[&#x27;zoom&#x27;] || map_57979b24024451cbc866b18803c0a607.getZoom();
+                map_57979b24024451cbc866b18803c0a607.setView(e.geocode.center, zoom);
+            }).addTo(map_57979b24024451cbc866b18803c0a607);
+
+        
+    
+            map_57979b24024451cbc866b18803c0a607.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            var tile_layer_070cd93fb89b84295e81064f07b09a7a = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/8f3093bff7f31deab12e30d9321ed034-6925dfd50f3f8865d195183a246b4b57/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_070cd93fb89b84295e81064f07b09a7a.addTo(map_57979b24024451cbc866b18803c0a607);
+        
+    
+            map_57979b24024451cbc866b18803c0a607.fitBounds(
+                [[29.88406293231847, 69.19999765510337], [29.88406293231847, 69.19999765510337]],
+                {&quot;maxZoom&quot;: 5}
+            );
+        
+    
+            var layer_control_663ed1aeb3011c71b8d7b6ff4f0bedd3_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_df89d64327424b653b1c5453bbc06a8e,
+                },
+                overlays :  {
+                    &quot;Pakistan&quot; : tile_layer_070cd93fb89b84295e81064f07b09a7a,
+                },
+            };
+            let layer_control_663ed1aeb3011c71b8d7b6ff4f0bedd3 = L.control.layers(
+                layer_control_663ed1aeb3011c71b8d7b6ff4f0bedd3_layers.base_layers,
+                layer_control_663ed1aeb3011c71b8d7b6ff4f0bedd3_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_57979b24024451cbc866b18803c0a607);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="create-sentinel-1-sar-composites">
+<h1>Create Sentinel-1 SAR composites<a class="headerlink" href="#create-sentinel-1-sar-composites" title="Link to this heading">#</a></h1>
+<p>Sentinel-1 <a class="reference external" href="https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar">Synthetic Aperture Radar (SAR)</a> data can be used to extract flood extent. Radar can collect signals in different polarizations, by controlling the analyzed polarization in both the transmit and receive paths. Signals emitted in vertical (V) and received in horizontal (H) polarization would be indicated by a VH. Alternatively, a signal that was emitted in horizontal (H) and received in horizontal (H) would be indicated by HH, and so on. Examining the signal strength from these different polarizations carries information about the structure of the imaged surface. Rough surface scattering, such as that caused by bare soil or water, is most sensitive to VV scattering. Therefore, VV polarization is often used to detect water bodies.</p>
+<p>The <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD">Sentinel-1 SAR data</a> are available from 2014 to present. Let’s filter the <code class="docutils literal notranslate"><span class="pre">COPERNICUS/S1_GRD</span></code> dataset by the date range and location.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1_col_2021</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S1_GRD&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">listContains</span><span class="p">(</span><span class="s2">&quot;transmitterReceiverPolarisation&quot;</span><span class="p">,</span> <span class="s2">&quot;VV&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;instrumentMode&quot;</span><span class="p">,</span> <span class="s2">&quot;IW&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;orbitProperties_pass&quot;</span><span class="p">,</span> <span class="s2">&quot;ASCENDING&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">pre_flood_start_date</span><span class="p">,</span> <span class="n">pre_flood_end_date</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;VV&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<p>Create the Sentinel-1 image collection for the flood period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1_col_2022</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S1_GRD&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">listContains</span><span class="p">(</span><span class="s2">&quot;transmitterReceiverPolarisation&quot;</span><span class="p">,</span> <span class="s2">&quot;VV&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;instrumentMode&quot;</span><span class="p">,</span> <span class="s2">&quot;IW&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&quot;orbitProperties_pass&quot;</span><span class="p">,</span> <span class="s2">&quot;ASCENDING&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">flood_start_date</span><span class="p">,</span> <span class="n">flood_end_date</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;VV&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<p>Create Sentinel-1 SAR composites for the pre-flood and flood periods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;HYBRID&quot;</span><span class="p">)</span>
+<span class="n">sar_2021</span> <span class="o">=</span> <span class="n">s1_col_2021</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">percentile</span><span class="p">([</span><span class="mi">20</span><span class="p">]))</span><span class="o">.</span><span class="n">clipToCollection</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+<span class="n">sar_2022</span> <span class="o">=</span> <span class="n">s1_col_2022</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">percentile</span><span class="p">([</span><span class="mi">20</span><span class="p">]))</span><span class="o">.</span><span class="n">clipToCollection</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2021</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2021&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2022</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2022&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_0db564ffc951fb06437766e2a89b660d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_0db564ffc951fb06437766e2a89b660d&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_0db564ffc951fb06437766e2a89b660d = L.map(
+                &quot;map_0db564ffc951fb06437766e2a89b660d&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_515801279bd64565eb94aadc28db0b85 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_515801279bd64565eb94aadc28db0b85.addTo(map_0db564ffc951fb06437766e2a89b660d);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_0db564ffc951fb06437766e2a89b660d);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_d8e6d702b658a39788fc23d9c36d455e = new L.featureGroup().addTo(
+                map_0db564ffc951fb06437766e2a89b660d
+            );
+            options.edit.featureGroup = drawnItems_draw_control_d8e6d702b658a39788fc23d9c36d455e;
+            var draw_control_d8e6d702b658a39788fc23d9c36d455e = new L.Control.Draw(
+                options
+            ).addTo( map_0db564ffc951fb06437766e2a89b660d );
+            map_0db564ffc951fb06437766e2a89b660d.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_d8e6d702b658a39788fc23d9c36d455e.addLayer(layer);
+             });
+            map_0db564ffc951fb06437766e2a89b660d.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_d8e6d702b658a39788fc23d9c36d455e.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710 = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_eaf888f25cb8a107391869883adf2710 = geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_eaf888f25cb8a107391869883adf2710 = L.Control.Geocoder[ geocoderName_geocoder_eaf888f25cb8a107391869883adf2710 ](
+                geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710[&quot;geocoder&quot;] = customGeocoder_geocoder_eaf888f25cb8a107391869883adf2710;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_eaf888f25cb8a107391869883adf2710[&#x27;zoom&#x27;] || map_0db564ffc951fb06437766e2a89b660d.getZoom();
+                map_0db564ffc951fb06437766e2a89b660d.setView(e.geocode.center, zoom);
+            }).addTo(map_0db564ffc951fb06437766e2a89b660d);
+
+        
+    
+            map_0db564ffc951fb06437766e2a89b660d.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            var tile_layer_98cfa1ce2598f65166210717fa8545fd = L.tileLayer(
+                &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&quot;,
+                {&quot;attribution&quot;: &quot;Esri&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 22, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_98cfa1ce2598f65166210717fa8545fd.addTo(map_0db564ffc951fb06437766e2a89b660d);
+        
+    
+            var tile_layer_a18d7a3d2b3b4b8148440ce91397a570 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/575433982333e41ea57e9eaf0748c32c-f28a57d34a40630893ce031e99482b6a/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_a18d7a3d2b3b4b8148440ce91397a570.addTo(map_0db564ffc951fb06437766e2a89b660d);
+        
+    
+            var tile_layer_ff228e590d0e80a457a8a995f0fa9860 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/14ba47de9846b95b4fd1939e3cb70096-8525cd1527928e0a9555390b7903ac91/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_ff228e590d0e80a457a8a995f0fa9860.addTo(map_0db564ffc951fb06437766e2a89b660d);
+        
+    
+            map_0db564ffc951fb06437766e2a89b660d.fitBounds(
+                [[29.88406293231847, 69.19999765510337], [29.88406293231847, 69.19999765510337]],
+                {&quot;maxZoom&quot;: 5}
+            );
+        
+    
+            var layer_control_83f5f0869f8de6505a27177d10b1b06f_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_515801279bd64565eb94aadc28db0b85,
+                },
+                overlays :  {
+                    &quot;Esri.WorldImagery&quot; : tile_layer_98cfa1ce2598f65166210717fa8545fd,
+                    &quot;SAR 2021&quot; : tile_layer_a18d7a3d2b3b4b8148440ce91397a570,
+                    &quot;SAR 2022&quot; : tile_layer_ff228e590d0e80a457a8a995f0fa9860,
+                },
+            };
+            let layer_control_83f5f0869f8de6505a27177d10b1b06f = L.control.layers(
+                layer_control_83f5f0869f8de6505a27177d10b1b06f_layers.base_layers,
+                layer_control_83f5f0869f8de6505a27177d10b1b06f_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_0db564ffc951fb06437766e2a89b660d);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="apply-speckle-filtering">
+<h1>Apply speckle filtering<a class="headerlink" href="#apply-speckle-filtering" title="Link to this heading">#</a></h1>
+<p>Speckle, appearing in synthetic aperture radar (SAR) images as granular noise, is due to the interference of waves reflected from many elementary scatterers. Speckle in SAR images complicates the image interpretation problem by reducing the effectiveness of image segmentation and classification (<a class="reference external" href="https://doi.org/10.1080/02757259409532206">Lee et al., 1994</a>). Therefore, speckle filtering is often applied to SAR images to reduce the speckle noise. In this example, we apply a morphological speckle filter to the Sentinel-1 SAR images. The morphological speckle filter is a non-linear filter that uses the median value of a pixel and its neighboring pixels to replace the pixel value. The kernel size is set to 100 meters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_2021</span> <span class="o">=</span> <span class="n">s1_col_2021</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">img</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">focal_median</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;meters&quot;</span><span class="p">))</span>
+<span class="n">col_2022</span> <span class="o">=</span> <span class="n">s1_col_2022</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">img</span><span class="p">:</span> <span class="n">img</span><span class="o">.</span><span class="n">focal_median</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;circle&quot;</span><span class="p">,</span> <span class="s2">&quot;meters&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="s2">&quot;HYBRID&quot;</span><span class="p">)</span>
+<span class="n">sar_2021</span> <span class="o">=</span> <span class="n">col_2021</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">percentile</span><span class="p">([</span><span class="mi">20</span><span class="p">]))</span><span class="o">.</span><span class="n">clipToCollection</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+<span class="n">sar_2022</span> <span class="o">=</span> <span class="n">col_2022</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">percentile</span><span class="p">([</span><span class="mi">20</span><span class="p">]))</span><span class="o">.</span><span class="n">clipToCollection</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2021</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2021&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2022</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2022&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">center_object</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_7e561dda95b22965ec3f82e28424166e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_7e561dda95b22965ec3f82e28424166e&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_7e561dda95b22965ec3f82e28424166e = L.map(
+                &quot;map_7e561dda95b22965ec3f82e28424166e&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fd97abc0308c8c1ce2acdbc69e307d5a = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_fd97abc0308c8c1ce2acdbc69e307d5a.addTo(map_7e561dda95b22965ec3f82e28424166e);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_7e561dda95b22965ec3f82e28424166e);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_d25b2f3ddc03352a3174680e5101786e = new L.featureGroup().addTo(
+                map_7e561dda95b22965ec3f82e28424166e
+            );
+            options.edit.featureGroup = drawnItems_draw_control_d25b2f3ddc03352a3174680e5101786e;
+            var draw_control_d25b2f3ddc03352a3174680e5101786e = new L.Control.Draw(
+                options
+            ).addTo( map_7e561dda95b22965ec3f82e28424166e );
+            map_7e561dda95b22965ec3f82e28424166e.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_d25b2f3ddc03352a3174680e5101786e.addLayer(layer);
+             });
+            map_7e561dda95b22965ec3f82e28424166e.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_d25b2f3ddc03352a3174680e5101786e.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9 = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_2a07a1fd06b647174af9ce757c03e7e9 = geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_2a07a1fd06b647174af9ce757c03e7e9 = L.Control.Geocoder[ geocoderName_geocoder_2a07a1fd06b647174af9ce757c03e7e9 ](
+                geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9[&quot;geocoder&quot;] = customGeocoder_geocoder_2a07a1fd06b647174af9ce757c03e7e9;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_2a07a1fd06b647174af9ce757c03e7e9[&#x27;zoom&#x27;] || map_7e561dda95b22965ec3f82e28424166e.getZoom();
+                map_7e561dda95b22965ec3f82e28424166e.setView(e.geocode.center, zoom);
+            }).addTo(map_7e561dda95b22965ec3f82e28424166e);
+
+        
+    
+            map_7e561dda95b22965ec3f82e28424166e.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            var tile_layer_98cfa1ce2598f65166210717fa8545fd = L.tileLayer(
+                &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&quot;,
+                {&quot;attribution&quot;: &quot;Esri&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 22, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_98cfa1ce2598f65166210717fa8545fd.addTo(map_7e561dda95b22965ec3f82e28424166e);
+        
+    
+            var tile_layer_14a0a28aec58e037bd4d56afce9aa082 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/d0929f592c99038bdbe6c866831665de-64b78878e8e3af3500145f11d88010fe/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_14a0a28aec58e037bd4d56afce9aa082.addTo(map_7e561dda95b22965ec3f82e28424166e);
+        
+    
+            var tile_layer_e83d9f2fea924db5128a3f857ef055c7 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/2ce9e6df97c33423fcccac52017c9bb9-d812927c078f0448247f10449dc9cec6/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_e83d9f2fea924db5128a3f857ef055c7.addTo(map_7e561dda95b22965ec3f82e28424166e);
+        
+    
+            map_7e561dda95b22965ec3f82e28424166e.fitBounds(
+                [[29.88406293231847, 69.19999765510337], [29.88406293231847, 69.19999765510337]],
+                {&quot;maxZoom&quot;: 5}
+            );
+        
+    
+            var layer_control_33d550749a44569d3f4e9f8568ba4550_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_fd97abc0308c8c1ce2acdbc69e307d5a,
+                },
+                overlays :  {
+                    &quot;Esri.WorldImagery&quot; : tile_layer_98cfa1ce2598f65166210717fa8545fd,
+                    &quot;SAR 2021&quot; : tile_layer_14a0a28aec58e037bd4d56afce9aa082,
+                    &quot;SAR 2022&quot; : tile_layer_e83d9f2fea924db5128a3f857ef055c7,
+                },
+            };
+            let layer_control_33d550749a44569d3f4e9f8568ba4550 = L.control.layers(
+                layer_control_33d550749a44569d3f4e9f8568ba4550_layers.base_layers,
+                layer_control_33d550749a44569d3f4e9f8568ba4550_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_7e561dda95b22965ec3f82e28424166e);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="compare-sentinel-1-sar-composites-side-by-side">
+<h1>Compare Sentinel-1 SAR composites side by side<a class="headerlink" href="#compare-sentinel-1-sar-composites-side-by-side" title="Link to this heading">#</a></h1>
+<p>Create a split-view map to compare the pre-flood and flood SAR composites side by side.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="mf">68.4338</span><span class="p">,</span> <span class="mf">26.4213</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">left_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span><span class="n">sar_2021</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2021&quot;</span><span class="p">)</span>
+<span class="n">right_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span><span class="n">sar_2022</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2022&quot;</span><span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">split_map</span><span class="p">(</span>
+    <span class="n">left_layer</span><span class="p">,</span> <span class="n">right_layer</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="s2">&quot;Sentinel-1 2021&quot;</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="s2">&quot;Sentinel-1 2022&quot;</span>
+<span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="o">**</span><span class="n">style</span><span class="p">),</span> <span class="p">{},</span> <span class="n">country_name</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_ea19bd26b6fdcf241c1cb544e178e636 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/gh/digidem/leaflet-side-by-side@2.0.0/leaflet-side-by-side.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_ea19bd26b6fdcf241c1cb544e178e636&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_ea19bd26b6fdcf241c1cb544e178e636 = L.map(
+                &quot;map_ea19bd26b6fdcf241c1cb544e178e636&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8481b39826a365f2cf32915b2f855908 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_8481b39826a365f2cf32915b2f855908.addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_64c01ffa468914e8acce50b3e0cf8192 = new L.featureGroup().addTo(
+                map_ea19bd26b6fdcf241c1cb544e178e636
+            );
+            options.edit.featureGroup = drawnItems_draw_control_64c01ffa468914e8acce50b3e0cf8192;
+            var draw_control_64c01ffa468914e8acce50b3e0cf8192 = new L.Control.Draw(
+                options
+            ).addTo( map_ea19bd26b6fdcf241c1cb544e178e636 );
+            map_ea19bd26b6fdcf241c1cb544e178e636.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_64c01ffa468914e8acce50b3e0cf8192.addLayer(layer);
+             });
+            map_ea19bd26b6fdcf241c1cb544e178e636.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_64c01ffa468914e8acce50b3e0cf8192.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_c056aa9ab8ebd7f118c46b158b910bfc = geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_c056aa9ab8ebd7f118c46b158b910bfc = L.Control.Geocoder[ geocoderName_geocoder_c056aa9ab8ebd7f118c46b158b910bfc ](
+                geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc[&quot;geocoder&quot;] = customGeocoder_geocoder_c056aa9ab8ebd7f118c46b158b910bfc;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_c056aa9ab8ebd7f118c46b158b910bfc[&#x27;zoom&#x27;] || map_ea19bd26b6fdcf241c1cb544e178e636.getZoom();
+                map_ea19bd26b6fdcf241c1cb544e178e636.setView(e.geocode.center, zoom);
+            }).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+
+        
+    
+            map_ea19bd26b6fdcf241c1cb544e178e636.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            map_ea19bd26b6fdcf241c1cb544e178e636.fitBounds(
+                [[26.4213, 68.4338], [26.4213, 68.4338]],
+                {&quot;maxZoom&quot;: 7}
+            );
+        
+    
+            var tile_layer_0df0dbd7403bb25a8aa5a82c7a519c83 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/d0929f592c99038bdbe6c866831665de-630c9d281e0edf3ead9d25fdf5ad9948/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_0df0dbd7403bb25a8aa5a82c7a519c83.addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            var tile_layer_7184f7bd43cc7b15e93c807161a79052 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/2ce9e6df97c33423fcccac52017c9bb9-a3b37e96197cdc1a0f0b469923f50bb0/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_7184f7bd43cc7b15e93c807161a79052.addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            var side_by_side_layers_2792b967e0e0a270598e94535134be88 = L.control.sideBySide(
+                tile_layer_0df0dbd7403bb25a8aa5a82c7a519c83, tile_layer_7184f7bd43cc7b15e93c807161a79052
+            ).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Sentinel-1 2021&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomleft&quot; }
+        ).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Sentinel-1 2022&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomright&quot; }
+        ).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            var tile_layer_f2e546499e7a44d85e08d56a77bf2e8f = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/8f3093bff7f31deab12e30d9321ed034-b20d257dd1caec7216f19c09dedd8705/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_f2e546499e7a44d85e08d56a77bf2e8f.addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+        
+    
+            var layer_control_6e42adfee918cd72e2065709a5947e1c_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_8481b39826a365f2cf32915b2f855908,
+                },
+                overlays :  {
+                    &quot;SAR 2021&quot; : tile_layer_0df0dbd7403bb25a8aa5a82c7a519c83,
+                    &quot;SAR 2022&quot; : tile_layer_7184f7bd43cc7b15e93c807161a79052,
+                    &quot;Pakistan&quot; : tile_layer_f2e546499e7a44d85e08d56a77bf2e8f,
+                },
+            };
+            let layer_control_6e42adfee918cd72e2065709a5947e1c = L.control.layers(
+                layer_control_6e42adfee918cd72e2065709a5947e1c_layers.base_layers,
+                layer_control_6e42adfee918cd72e2065709a5947e1c_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_ea19bd26b6fdcf241c1cb544e178e636);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="extract-sar-water-extent">
+<h1>Extract SAR water extent<a class="headerlink" href="#extract-sar-water-extent" title="Link to this heading">#</a></h1>
+<p>Water usually appears dark in SAR images because radar waves are reflected differently by different surfaces. Water is a smooth, flat surface that does not reflect radar waves very well, so it appears dark in SAR images. Thresholding SAR imagery is one of the most widely used approaches to delineate water extent for its effectiveness and efficiency (<a class="reference external" href="https://doi.org/10.1016/j.isprsjprs.2019.10.017">Liang and Liu, 2020</a>). Thresholding methods can be generally divided into two categories: global and local. Global thresholding methods use a single threshold value to segment the entire image. Local thresholding methods use a different threshold value for each pixel. In this example, we use a global thresholding method to extract the water extent. The threshold value is set to -18
+dB.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mi">18</span>
+<span class="n">water_2021</span> <span class="o">=</span> <span class="n">sar_2021</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">threshold</span><span class="p">)</span>
+<span class="n">water_2022</span> <span class="o">=</span> <span class="n">sar_2022</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<p>Create a split-view map to compare the pre-flood and flood water extent side by side.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="mf">68.4338</span><span class="p">,</span> <span class="mf">26.4213</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2021</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2021&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2022</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2022&quot;</span><span class="p">)</span>
+
+<span class="n">left_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span>
+    <span class="n">water_2021</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">},</span> <span class="s2">&quot;Water 2021&quot;</span>
+<span class="p">)</span>
+<span class="n">right_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span>
+    <span class="n">water_2022</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">},</span> <span class="s2">&quot;Water 2022&quot;</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">split_map</span><span class="p">(</span><span class="n">left_layer</span><span class="p">,</span> <span class="n">right_layer</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="s2">&quot;Water 2021&quot;</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="s2">&quot;Water 2022&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="o">**</span><span class="n">style</span><span class="p">),</span> <span class="p">{},</span> <span class="n">country_name</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_fe61c7deb805b9755be81cc0a5c2d66d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/gh/digidem/leaflet-side-by-side@2.0.0/leaflet-side-by-side.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_fe61c7deb805b9755be81cc0a5c2d66d&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_fe61c7deb805b9755be81cc0a5c2d66d = L.map(
+                &quot;map_fe61c7deb805b9755be81cc0a5c2d66d&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1d705aa9454a496819afa55b26b317bf = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_1d705aa9454a496819afa55b26b317bf.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_ec1f63983b094d0e4109fc75fde0a535 = new L.featureGroup().addTo(
+                map_fe61c7deb805b9755be81cc0a5c2d66d
+            );
+            options.edit.featureGroup = drawnItems_draw_control_ec1f63983b094d0e4109fc75fde0a535;
+            var draw_control_ec1f63983b094d0e4109fc75fde0a535 = new L.Control.Draw(
+                options
+            ).addTo( map_fe61c7deb805b9755be81cc0a5c2d66d );
+            map_fe61c7deb805b9755be81cc0a5c2d66d.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_ec1f63983b094d0e4109fc75fde0a535.addLayer(layer);
+             });
+            map_fe61c7deb805b9755be81cc0a5c2d66d.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_ec1f63983b094d0e4109fc75fde0a535.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13 = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_00a6127461ea39fd82e12031f34eed13 = geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_00a6127461ea39fd82e12031f34eed13 = L.Control.Geocoder[ geocoderName_geocoder_00a6127461ea39fd82e12031f34eed13 ](
+                geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13[&quot;geocoder&quot;] = customGeocoder_geocoder_00a6127461ea39fd82e12031f34eed13;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_00a6127461ea39fd82e12031f34eed13[&#x27;zoom&#x27;] || map_fe61c7deb805b9755be81cc0a5c2d66d.getZoom();
+                map_fe61c7deb805b9755be81cc0a5c2d66d.setView(e.geocode.center, zoom);
+            }).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+
+        
+    
+            map_fe61c7deb805b9755be81cc0a5c2d66d.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            map_fe61c7deb805b9755be81cc0a5c2d66d.fitBounds(
+                [[26.4213, 68.4338], [26.4213, 68.4338]],
+                {&quot;maxZoom&quot;: 7}
+            );
+        
+    
+            var tile_layer_8f34d9cfdccbc60044dadcc80382c1e7 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/d0929f592c99038bdbe6c866831665de-03df847ab3764fad6bc59e2120a961c4/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_8f34d9cfdccbc60044dadcc80382c1e7.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var tile_layer_fbcfb9716e6e1108335458c08526c4a4 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/2ce9e6df97c33423fcccac52017c9bb9-c6ae3da2fd6436df68a2410d7a214c65/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_fbcfb9716e6e1108335458c08526c4a4.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var tile_layer_9c86965af07feb83f0d7b3e872bb043e = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/f79bd6a2149c1b6bb63452daa5af57f7-125873a030deaef7824777b4de815166/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_9c86965af07feb83f0d7b3e872bb043e.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var tile_layer_6eda75a44f08ebd36883bc0e282f2591 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/fc893bd131a83f5fbfa6b2785c47d9db-7ea476b99b17be1ca87b2637ef00845e/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_6eda75a44f08ebd36883bc0e282f2591.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var side_by_side_layers_681df8b3db4d33eebb1300001335cd92 = L.control.sideBySide(
+                tile_layer_9c86965af07feb83f0d7b3e872bb043e, tile_layer_6eda75a44f08ebd36883bc0e282f2591
+            ).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Water 2021&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomleft&quot; }
+        ).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Water 2022&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomright&quot; }
+        ).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var tile_layer_fcd05cce9404b11b4a1b3c7b2436d82b = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/8f3093bff7f31deab12e30d9321ed034-d267eeff5823afc92aaa32b37650bf94/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_fcd05cce9404b11b4a1b3c7b2436d82b.addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+        
+    
+            var layer_control_ba538e7b8cbf41930f871038fa3fe380_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_1d705aa9454a496819afa55b26b317bf,
+                },
+                overlays :  {
+                    &quot;SAR 2021&quot; : tile_layer_8f34d9cfdccbc60044dadcc80382c1e7,
+                    &quot;SAR 2022&quot; : tile_layer_fbcfb9716e6e1108335458c08526c4a4,
+                    &quot;Water 2021&quot; : tile_layer_9c86965af07feb83f0d7b3e872bb043e,
+                    &quot;Water 2022&quot; : tile_layer_6eda75a44f08ebd36883bc0e282f2591,
+                    &quot;Pakistan&quot; : tile_layer_fcd05cce9404b11b4a1b3c7b2436d82b,
+                },
+            };
+            let layer_control_ba538e7b8cbf41930f871038fa3fe380 = L.control.layers(
+                layer_control_ba538e7b8cbf41930f871038fa3fe380_layers.base_layers,
+                layer_control_ba538e7b8cbf41930f871038fa3fe380_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_fe61c7deb805b9755be81cc0a5c2d66d);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="extract-sar-flood-extent">
+<h1>Extract SAR flood extent<a class="headerlink" href="#extract-sar-flood-extent" title="Link to this heading">#</a></h1>
+<p>Similar to the Landsat approach, we can subtract the pre-flood water extent from the flood water extent to extract the flood extent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flood_extent</span> <span class="o">=</span> <span class="n">water_2022</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">water_2021</span><span class="p">)</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">selfMask</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div></div>
+</div>
+<p>The flood extent is the difference between the flood water extent and the pre-flood water extent. In other words, pixels identified as water in the flood period but not in the pre-flood period are considered as flooded pixels, which are shown in cyan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="mf">68.4338</span><span class="p">,</span> <span class="mf">26.4213</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2021</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2021&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">sar_2022</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;SAR 2022&quot;</span><span class="p">)</span>
+
+<span class="n">left_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span>
+    <span class="n">water_2021</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">},</span> <span class="s2">&quot;Water 2021&quot;</span>
+<span class="p">)</span>
+<span class="n">right_layer</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">ee_tile_layer</span><span class="p">(</span>
+    <span class="n">water_2022</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">},</span> <span class="s2">&quot;Water 2022&quot;</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">split_map</span><span class="p">(</span><span class="n">left_layer</span><span class="p">,</span> <span class="n">right_layer</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="s2">&quot;Water 2021&quot;</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="s2">&quot;Water 2022&quot;</span><span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">flood_extent</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;cyan&quot;</span><span class="p">},</span> <span class="s2">&quot;Flood Extent&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="o">**</span><span class="n">style</span><span class="p">),</span> <span class="p">{},</span> <span class="n">country_name</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output text_html"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_8c6dd2bfe4ad5d75780156126bda1766 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css&quot;/&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot;/&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/gh/digidem/leaflet-side-by-side@2.0.0/leaflet-side-by-side.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_8c6dd2bfe4ad5d75780156126bda1766&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_8c6dd2bfe4ad5d75780156126bda1766 = L.map(
+                &quot;map_8c6dd2bfe4ad5d75780156126bda1766&quot;,
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    eeInitialize: true,
+                    addGoogleMap: false,
+                    pluginLatlngpopup: false,
+                    pluginFullscreen: true,
+                    pluginDraw: true,
+                    DrawExport: false,
+                    pluginMinimap: false,
+                    locateControl: false,
+                    searchControl: true,
+                    layersControl: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_77bd5ffc0208ea7f698d37d2d6ebfe56 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 30, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_77bd5ffc0208ea7f698d37d2d6ebfe56.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            L.control.fullscreen(
+                {&quot;forceSeparateButton&quot;: false, &quot;position&quot;: &quot;topleft&quot;, &quot;title&quot;: &quot;Full Screen&quot;, &quot;titleCancel&quot;: &quot;Exit Full Screen&quot;}
+            ).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var options = {
+              position: &quot;topleft&quot;,
+              draw: {},
+              edit: {},
+            }
+            // FeatureGroup is to store editable layers.
+            var drawnItems_draw_control_e50f6092a89edc762939a9478e7f96d8 = new L.featureGroup().addTo(
+                map_8c6dd2bfe4ad5d75780156126bda1766
+            );
+            options.edit.featureGroup = drawnItems_draw_control_e50f6092a89edc762939a9478e7f96d8;
+            var draw_control_e50f6092a89edc762939a9478e7f96d8 = new L.Control.Draw(
+                options
+            ).addTo( map_8c6dd2bfe4ad5d75780156126bda1766 );
+            map_8c6dd2bfe4ad5d75780156126bda1766.on(L.Draw.Event.CREATED, function(e) {
+                var layer = e.layer,
+                    type = e.layerType;
+                var coords = JSON.stringify(layer.toGeoJSON());
+                layer.on(&#x27;click&#x27;, function() {
+                    alert(coords);
+                    console.log(coords);
+                });
+                drawnItems_draw_control_e50f6092a89edc762939a9478e7f96d8.addLayer(layer);
+             });
+            map_8c6dd2bfe4ad5d75780156126bda1766.on(&#x27;draw:created&#x27;, function(e) {
+                drawnItems_draw_control_e50f6092a89edc762939a9478e7f96d8.addLayer(e.layer);
+            });
+            
+        
+    
+
+            var geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d = {&quot;collapsed&quot;: true, &quot;defaultMarkGeocode&quot;: true, &quot;position&quot;: &quot;topleft&quot;, &quot;provider&quot;: &quot;nominatim&quot;, &quot;providerOptions&quot;: {}, &quot;zoom&quot;: 11};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_71e13dc451c236cd2aa60438199e717d = geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d[&quot;provider&quot;];
+
+            var customGeocoder_geocoder_71e13dc451c236cd2aa60438199e717d = L.Control.Geocoder[ geocoderName_geocoder_71e13dc451c236cd2aa60438199e717d ](
+                geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d[&#x27;providerOptions&#x27;]
+            );
+            geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d[&quot;geocoder&quot;] = customGeocoder_geocoder_71e13dc451c236cd2aa60438199e717d;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d
+            ).on(&#x27;markgeocode&#x27;, function(e) {
+                var zoom = geocoderOpts_geocoder_71e13dc451c236cd2aa60438199e717d[&#x27;zoom&#x27;] || map_8c6dd2bfe4ad5d75780156126bda1766.getZoom();
+                map_8c6dd2bfe4ad5d75780156126bda1766.setView(e.geocode.center, zoom);
+            }).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+
+        
+    
+            map_8c6dd2bfe4ad5d75780156126bda1766.fitBounds(
+                [[20, 0], [20, 0]],
+                {&quot;maxZoom&quot;: 2}
+            );
+        
+    
+            map_8c6dd2bfe4ad5d75780156126bda1766.fitBounds(
+                [[26.4213, 68.4338], [26.4213, 68.4338]],
+                {&quot;maxZoom&quot;: 7}
+            );
+        
+    
+            var tile_layer_f0bee8dcba0c228d1468e0b1448e5a3c = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/d0929f592c99038bdbe6c866831665de-053006ff6efcfeaf104f881c57841ede/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_f0bee8dcba0c228d1468e0b1448e5a3c.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var tile_layer_b66e430b41a00affe3210a1ebff9d79d = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/2ce9e6df97c33423fcccac52017c9bb9-1c447ce37cbb86786db23ac6516dfb95/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_b66e430b41a00affe3210a1ebff9d79d.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var tile_layer_3b44049c8ea6dd110c12866404dcf9d4 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/f79bd6a2149c1b6bb63452daa5af57f7-d0f018f8b13f8914eb7527d5e829b07e/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_3b44049c8ea6dd110c12866404dcf9d4.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var tile_layer_3043c2b7dfa65708dd04c9bcc7f11bd3 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/fc893bd131a83f5fbfa6b2785c47d9db-b5bbe92bd8d5b5288256def58f5d20fc/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_3043c2b7dfa65708dd04c9bcc7f11bd3.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var side_by_side_layers_5ee8a4f0b7d32cddbb52788809d866ab = L.control.sideBySide(
+                tile_layer_3b44049c8ea6dd110c12866404dcf9d4, tile_layer_3043c2b7dfa65708dd04c9bcc7f11bd3
+            ).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Water 2021&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomleft&quot; }
+        ).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+        L.Control.CustomControl = L.Control.extend({
+            onAdd: function(map) {
+                let div = L.DomUtil.create(&#x27;div&#x27;);
+                div.innerHTML = `&lt;h4&gt;Water 2022&lt;/h4&gt;`;
+                return div;
+            },
+            onRemove: function(map) {
+                // Nothing to do here
+            }
+        });
+        L.control.customControl = function(opts) {
+            return new L.Control.CustomControl(opts);
+        }
+        L.control.customControl(
+            { position: &quot;bottomright&quot; }
+        ).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var tile_layer_ae5afd510db67cc07e3924cc162c2525 = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/d0a50c427d61378f020137d19d61cd23-bdaa191fdb3da39c463c791b10ba139a/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_ae5afd510db67cc07e3924cc162c2525.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var tile_layer_9c2afc9ba080d2f8496c228aa4ef3bba = L.tileLayer(
+                &quot;https://earthengine.googleapis.com/v1/projects/earthengine-legacy/maps/8f3093bff7f31deab12e30d9321ed034-a689116231bda1550653bd882bfc071d/tiles/{z}/{x}/{y}&quot;,
+                {&quot;attribution&quot;: &quot;Google Earth Engine&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 24, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1.0, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_9c2afc9ba080d2f8496c228aa4ef3bba.addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+        
+    
+            var layer_control_4c3f9e79a15a43fd9ad5b0fdc158f941_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_77bd5ffc0208ea7f698d37d2d6ebfe56,
+                },
+                overlays :  {
+                    &quot;SAR 2021&quot; : tile_layer_f0bee8dcba0c228d1468e0b1448e5a3c,
+                    &quot;SAR 2022&quot; : tile_layer_b66e430b41a00affe3210a1ebff9d79d,
+                    &quot;Water 2021&quot; : tile_layer_3b44049c8ea6dd110c12866404dcf9d4,
+                    &quot;Water 2022&quot; : tile_layer_3043c2b7dfa65708dd04c9bcc7f11bd3,
+                    &quot;Flood Extent&quot; : tile_layer_ae5afd510db67cc07e3924cc162c2525,
+                    &quot;Pakistan&quot; : tile_layer_9c2afc9ba080d2f8496c228aa4ef3bba,
+                },
+            };
+            let layer_control_4c3f9e79a15a43fd9ad5b0fdc158f941 = L.control.layers(
+                layer_control_4c3f9e79a15a43fd9ad5b0fdc158f941_layers.base_layers,
+                layer_control_4c3f9e79a15a43fd9ad5b0fdc158f941_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_8c6dd2bfe4ad5d75780156126bda1766);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" width="100%" height="600"style="border:none !important;" "allowfullscreen" "webkitallowfullscreen" "mozallowfullscreen"></iframe></div></div>
+</div>
+</section>
+<section id="calculate-sar-flood-area">
+<h1>Calculate SAR flood area<a class="headerlink" href="#calculate-sar-flood-area" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_2021</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span>
+    <span class="n">water_2021</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="n">country</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">geemap</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">area_2021</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing statistics ...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abbreviati</th>
+      <th>country_co</th>
+      <th>country_na</th>
+      <th>sum</th>
+      <th>wld_rgn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Pak.</td>
+      <td>PK</td>
+      <td>Pakistan</td>
+      <td>68949.458824</td>
+      <td>S Asia</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_2022</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span>
+    <span class="n">water_2022</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="n">country</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">geemap</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">area_2022</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing statistics ...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abbreviati</th>
+      <th>country_co</th>
+      <th>country_na</th>
+      <th>sum</th>
+      <th>wld_rgn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Pak.</td>
+      <td>PK</td>
+      <td>Pakistan</td>
+      <td>59224.121569</td>
+      <td>S Asia</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flood_area</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span>
+    <span class="n">flood_extent</span><span class="o">.</span><span class="n">selfMask</span><span class="p">(),</span> <span class="n">country</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">geemap</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">flood_area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <style>
+                .geemap-dark {
+                    --jp-widgets-color: white;
+                    --jp-widgets-label-color: white;
+                    --jp-ui-font-color1: white;
+                    --jp-layout-color2: #454545;
+                    background-color: #383838;
+                }
+
+                .geemap-dark .jupyter-button {
+                    --jp-layout-color3: #383838;
+                }
+
+                .geemap-colab {
+                    background-color: var(--colab-primary-surface-color, white);
+                }
+
+                .geemap-colab .jupyter-button {
+                    --jp-layout-color3: var(--colab-primary-surface-color, white);
+                }
+            </style>
+            </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing statistics ...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abbreviati</th>
+      <th>country_co</th>
+      <th>country_na</th>
+      <th>sum</th>
+      <th>wld_rgn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Pak.</td>
+      <td>PK</td>
+      <td>Pakistan</td>
+      <td>12263.835294</td>
+      <td>S Asia</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The total area of the flood extent is 12,263 square kilometers based on Sentinel-1 SAR images.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "bingqing-liu/ENVS473-Remote-Sensing",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/labs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab4b.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab4b - Working with NASA EMIT data in HyperCoast</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bingqing Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
