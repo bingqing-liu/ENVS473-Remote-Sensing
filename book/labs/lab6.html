@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction &#8212; ENVS473 Remote Sensing of Environment</title>
+    <title>Lab6 - SAR Application for Studying Pakistan Floods 2022 Using Earth Engine and Geemap &#8212; ENVS473 Remote Sensing of Environment</title>
   
   
   
@@ -206,18 +206,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lab3c.html">Lab3c - Image Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4a.html">Lab4a - Working with NASA PACE data in HyperCoast</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab4b.html">Lab4b - Working with NASA EMIT data in HyperCoast</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
-
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab6 - SAR Application for Studying Pakistan Floods 2022 Using Earth Engine and Geemap</a></li>
 </ul>
 
     </div>
@@ -479,7 +468,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>Lab6 - SAR Application for Studying Pakistan Floods 2022 Using Earth Engine and Geemap</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -489,20 +478,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -517,18 +503,14 @@
 <a class="reference external" href="https://studiolab.sagemaker.aws/import/github/giswqs/notebook-share/blob/master/docs/pakistan_floods.ipynb"><img alt="Open in SageMaker Studio Lab" src="https://studiolab.sagemaker.aws/studiolab.svg" /></a>
 <a class="reference external" href="https://pccompute.westeurope.cloudapp.azure.com/compute/hub/user-redirect/git-pull?repo=https://github.com/giswqs/notebook-share&amp;amp;urlpath=lab/tree/notebook-share/docs/pakistan_floods.ipynb&amp;amp;branch=master"><img alt="Open in Planetary Computer" src="https://img.shields.io/badge/Open-Planetary%20Computer-black?style=flat&amp;logo=microsoft" /></a>
 <a class="reference external" href="https://mybinder.org/v2/gh/giswqs/notebook-share/HEAD?labpath=docs%25pakistan_floods.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>#lab6 - SAR Application for Pakistan Floods 2022 Using Earth Engine and Geemap</p>
-<section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="lab6-sar-application-for-studying-pakistan-floods-2022-using-earth-engine-and-geemap">
+<h1>Lab6 - SAR Application for Studying Pakistan Floods 2022 Using Earth Engine and Geemap<a class="headerlink" href="#lab6-sar-application-for-studying-pakistan-floods-2022-using-earth-engine-and-geemap" title="Link to this heading">#</a></h1>
 <p>From 14 June to October 2022, floods in Pakistan killed 1,739 people, and caused 3.2 trillion Pakistani Rupees (14.9 billion US Dollars) of damage and 3.3 trillion Pakistani Rupees (15.2 billion US Dollars) of economic losses. The flooding was the world’s deadliest flood since the 2020 South Asian floods and described as the worst in the country’s history. On 25 August 2022, Pakistan declared a state of emergency because of the flooding. See the <a class="reference external" href="https://en.wikipedia.org/wiki/2022_Pakistan_floods">Wikipedia</a> page for more information about the 2022 Pakistan floods.</p>
-</section>
-<section id="requirements">
-<h1>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h1>
+<p>Requirements</p>
 <p>To follow this tutorial, you must first <a class="reference external" href="https://earthengine.google.com/signup">sign up</a> for a <a class="reference external" href="https://earthengine.google.com/">Google Earth Engine</a> account. Earth Engine is a cloud computing platform with a <a class="reference external" href="https://developers.google.com/earth-engine/datasets/">multi-petabyte catalog</a> of satellite imagery and geospatial datasets. It is free for noncommercial use. To authenticate the Earth Engine Python API, see instructions <a class="reference external" href="https://book.geemap.org/chapters/01_introduction.html#earth-engine-authentication">here</a>.</p>
 <p>In this tutorial, we will use the <a class="reference external" href="https://geemap.org">geemap</a> Python package to visualize and analyze the Pakistan floods. Geemap enables users to analyze and visualize Earth Engine datasets interactively within a Jupyter-based environment with minimal coding. To learn more about geemap, check out <a class="reference external" href="https://geemap.org">https://geemap.org</a>.</p>
-</section>
 <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>Uncomment the following line to install geemap if needed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -539,7 +521,7 @@
 </div>
 </section>
 <section id="import-libraries">
-<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h1>
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
 <p>Import the earthengine-api and geemap.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -557,7 +539,7 @@
 </div>
 </section>
 <section id="create-an-interactive-map">
-<h1>Create an interactive map<a class="headerlink" href="#create-an-interactive-map" title="Link to this heading">#</a></h1>
+<h2>Create an interactive map<a class="headerlink" href="#create-an-interactive-map" title="Link to this heading">#</a></h2>
 <p>Specify the center point <code class="docutils literal notranslate"><span class="pre">[lat,</span> <span class="pre">lon]</span></code> and zoom level of the map.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -791,7 +773,7 @@
 </div>
 </section>
 <section id="visualize-datasets">
-<h1>Visualize datasets<a class="headerlink" href="#visualize-datasets" title="Link to this heading">#</a></h1>
+<h2>Visualize datasets<a class="headerlink" href="#visualize-datasets" title="Link to this heading">#</a></h2>
 <p>Specify the country of interest and filter the dataset by the country name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,7 +996,7 @@
 </div>
 </section>
 <section id="create-sentinel-1-sar-composites">
-<h1>Create Sentinel-1 SAR composites<a class="headerlink" href="#create-sentinel-1-sar-composites" title="Link to this heading">#</a></h1>
+<h2>Create Sentinel-1 SAR composites<a class="headerlink" href="#create-sentinel-1-sar-composites" title="Link to this heading">#</a></h2>
 <p>Sentinel-1 <a class="reference external" href="https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar">Synthetic Aperture Radar (SAR)</a> data can be used to extract flood extent. Radar can collect signals in different polarizations, by controlling the analyzed polarization in both the transmit and receive paths. Signals emitted in vertical (V) and received in horizontal (H) polarization would be indicated by a VH. Alternatively, a signal that was emitted in horizontal (H) and received in horizontal (H) would be indicated by HH, and so on. Examining the signal strength from these different polarizations carries information about the structure of the imaged surface. Rough surface scattering, such as that caused by bare soil or water, is most sensitive to VV scattering. Therefore, VV polarization is often used to detect water bodies.</p>
 <p>The <a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD">Sentinel-1 SAR data</a> are available from 2014 to present. Let’s filter the <code class="docutils literal notranslate"><span class="pre">COPERNICUS/S1_GRD</span></code> dataset by the date range and location.</p>
 <div class="cell docutils container">
@@ -1335,7 +1317,7 @@
 </div>
 </section>
 <section id="apply-speckle-filtering">
-<h1>Apply speckle filtering<a class="headerlink" href="#apply-speckle-filtering" title="Link to this heading">#</a></h1>
+<h2>Apply speckle filtering<a class="headerlink" href="#apply-speckle-filtering" title="Link to this heading">#</a></h2>
 <p>Speckle, appearing in synthetic aperture radar (SAR) images as granular noise, is due to the interference of waves reflected from many elementary scatterers. Speckle in SAR images complicates the image interpretation problem by reducing the effectiveness of image segmentation and classification (<a class="reference external" href="https://doi.org/10.1080/02757259409532206">Lee et al., 1994</a>). Therefore, speckle filtering is often applied to SAR images to reduce the speckle noise. In this example, we apply a morphological speckle filter to the Sentinel-1 SAR images. The morphological speckle filter is a non-linear filter that uses the median value of a pixel and its neighboring pixels to replace the pixel value. The kernel size is set to 100 meters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1607,7 +1589,7 @@
 </div>
 </section>
 <section id="compare-sentinel-1-sar-composites-side-by-side">
-<h1>Compare Sentinel-1 SAR composites side by side<a class="headerlink" href="#compare-sentinel-1-sar-composites-side-by-side" title="Link to this heading">#</a></h1>
+<h2>Compare Sentinel-1 SAR composites side by side<a class="headerlink" href="#compare-sentinel-1-sar-composites-side-by-side" title="Link to this heading">#</a></h2>
 <p>Create a split-view map to compare the pre-flood and flood SAR composites side by side.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1892,7 +1874,7 @@
 </div>
 </section>
 <section id="extract-sar-water-extent">
-<h1>Extract SAR water extent<a class="headerlink" href="#extract-sar-water-extent" title="Link to this heading">#</a></h1>
+<h2>Extract SAR water extent<a class="headerlink" href="#extract-sar-water-extent" title="Link to this heading">#</a></h2>
 <p>Water usually appears dark in SAR images because radar waves are reflected differently by different surfaces. Water is a smooth, flat surface that does not reflect radar waves very well, so it appears dark in SAR images. Thresholding SAR imagery is one of the most widely used approaches to delineate water extent for its effectiveness and efficiency (<a class="reference external" href="https://doi.org/10.1016/j.isprsjprs.2019.10.017">Liang and Liu, 2020</a>). Thresholding methods can be generally divided into two categories: global and local. Global thresholding methods use a single threshold value to segment the entire image. Local thresholding methods use a different threshold value for each pixel. In this example, we use a global thresholding method to extract the water extent. The threshold value is set to -18
 dB.</p>
 <div class="cell docutils container">
@@ -2237,7 +2219,7 @@ dB.</p>
 </div>
 </section>
 <section id="extract-sar-flood-extent">
-<h1>Extract SAR flood extent<a class="headerlink" href="#extract-sar-flood-extent" title="Link to this heading">#</a></h1>
+<h2>Extract SAR flood extent<a class="headerlink" href="#extract-sar-flood-extent" title="Link to this heading">#</a></h2>
 <p>Similar to the Landsat approach, we can subtract the pre-flood water extent from the flood water extent to extract the flood extent.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2591,7 +2573,7 @@ dB.</p>
 </div>
 </section>
 <section id="calculate-sar-flood-area">
-<h1>Calculate SAR flood area<a class="headerlink" href="#calculate-sar-flood-area" title="Link to this heading">#</a></h1>
+<h2>Calculate SAR flood area<a class="headerlink" href="#calculate-sar-flood-area" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_2021</span> <span class="o">=</span> <span class="n">geemap</span><span class="o">.</span><span class="n">zonal_stats</span><span class="p">(</span>
@@ -2813,6 +2795,7 @@ dB.</p>
 </div>
 <p>The total area of the flood extent is 12,263 square kilometers based on Sentinel-1 SAR images.</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2870,20 +2853,17 @@ dB.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-interactive-map">Create an interactive map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-datasets">Visualize datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-sentinel-1-sar-composites">Create Sentinel-1 SAR composites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-speckle-filtering">Apply speckle filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sentinel-1-sar-composites-side-by-side">Compare Sentinel-1 SAR composites side by side</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-water-extent">Extract SAR water extent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-sar-flood-extent">Extract SAR flood extent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sar-flood-area">Calculate SAR flood area</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
