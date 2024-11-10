@@ -23,6 +23,8 @@ parts:
       - file: book/lectures/lecture11
       - file: book/lectures/lecture12
       - file: book/lectures/lecture13
+      - file: book/lectures/lecture14
+      
   - caption: Labs
     chapters:
       - file: book/labs/lab1a
