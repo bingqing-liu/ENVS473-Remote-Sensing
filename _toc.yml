@@ -39,6 +39,7 @@ parts:
       - file: book/labs/lab4a
       - file: book/labs/lab4b
       - file: book/labs/lab6
+      - file: book/labs/lab7
       
 # Or you organize the TOC by parts
 
